@@ -7,8 +7,11 @@ public class Pawn {
     private int yCoordinate;
     private PieceColor pieceColor;
 
+    private Validator validator;
+
     public Pawn(PieceColor pieceColor) {
-        this.pieceColor = pieceColor;
+        this.setPieceColor(pieceColor);
+        this.validator = new Validator();
     }
 
     public ChessBoard getChesssBoard() {
@@ -44,7 +47,12 @@ public class Pawn {
     }
 
     public void Move(MovementType movementType, int newX, int newY) {
-        throw new UnsupportedOperationException("Need to implement Pawn.Move()") ;
+        if (movementType == MovementType.MOVE && this.getChesssBoard().IsLegalBoardPosition(newX, newY)) {
+            if (validator.isValidNewX(newX) && validator.isValidNewY(newY)) {
+                this.setXCoordinate(newX);
+                this.setYCoordinate(newY);
+            }
+        }
     }
 
     @Override
@@ -55,5 +63,26 @@ public class Pawn {
     protected String CurrentPositionAsString() {
         String eol = System.lineSeparator();
         return String.format("Current X: {1}{0}Current Y: {2}{0}Piece Color: {3}", eol, xCoordinate, yCoordinate, pieceColor);
+    }
+
+    private class Validator {
+
+        private int getMovingDirection() {
+            if (getPieceColor() == PieceColor.BLACK) {
+                return -1;
+            }
+            return 1;
+        }
+
+        public boolean isValidNewX(int newX) {
+            return newX == xCoordinate + getMovingDirection() * 0 ||
+                    newX == xCoordinate + getMovingDirection() * 1;
+        }
+
+        public boolean isValidNewY(int newY) {
+            return newY == yCoordinate - 1 ||
+                    newY == yCoordinate ||
+                    newY == yCoordinate + 1;
+        }
     }
 }
