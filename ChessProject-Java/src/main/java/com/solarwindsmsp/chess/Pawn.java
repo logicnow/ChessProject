@@ -43,8 +43,38 @@ public class Pawn {
         pieceColor = value;
     }
 
+    /**
+     * Sets the pawn to its new position if and only if:
+     * - the new coordinates are not outside the chessboard
+     * - the new coordinates are valid with the current coordinates of the pawn
+     * - the new coordinates are valid with the color of the pawn
+     * - there is no piece at the new coordinates
+     * 
+     * @param movementType
+     * @param newX
+     * @param newY 
+     */
     public void Move(MovementType movementType, int newX, int newY) {
-        throw new UnsupportedOperationException("Need to implement Pawn.Move()") ;
+        if(null==movementType){
+            throw new UnsupportedOperationException("This move is not supported by the object Pawn") ;
+        }
+        else switch (movementType) {
+            case MOVE:
+                //pieceDirection is used to detect the direction of the pawn on the X axis
+                int pieceDirection = (this.pieceColor==PieceColor.BLACK?-1:1);
+                if(this.chessBoard!=null &&
+                        this.chessBoard.IsLegalBoardPosition(newX,newY) &&
+                        this.chessBoard.IsFreeBoardPosition(newX, newY) &&
+                        newY == this.yCoordinate+pieceDirection &&
+                        newX == this.xCoordinate){
+                    this.xCoordinate=newX;
+                    this.yCoordinate=newY;
+                }   break;
+            case CAPTURE:
+                throw new UnsupportedOperationException("Need to implement Pawn.Capture()") ;
+            default:
+                throw new UnsupportedOperationException("This move is not supported by the object Pawn") ;
+        }
     }
 
     @Override
