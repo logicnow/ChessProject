@@ -4,8 +4,8 @@ import junit.framework.TestCase;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
+import org.junit.Rule;
+import org.junit.rules.ExpectedException;
 
 public class ChessBoardTest extends TestCase {
 
@@ -16,49 +16,54 @@ public class ChessBoardTest extends TestCase {
         testSubject = new ChessBoard();
     }
 
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+
     @Test
     public void testHas_MaxBoardWidth_of_7() {
-        assertEquals(7, ChessBoard.MAX_BOARD_HEIGHT);
+        assertEquals(7, ChessUtil.MAX_BOARD_HEIGHT);
     }
 
     @Test
     public void testHas_MaxBoardHeight_of_7() {
-        assertEquals(7, ChessBoard.MAX_BOARD_HEIGHT);
+        assertEquals(7, ChessUtil.MAX_BOARD_HEIGHT);
     }
 
     @Test
     public void testIsLegalBoardPosition_True_X_equals_0_Y_equals_0() {
-        boolean isValidPosition = testSubject.IsLegalBoardPosition(0, 0);
+        boolean isValidPosition = testSubject.isLegalBoardPosition(0, 0);
         assertTrue(isValidPosition);
     }
 
     @Test
     public void testIsLegalBoardPosition_True_X_equals_5_Y_equals_5() {
-        boolean isValidPosition = testSubject.IsLegalBoardPosition(5, 5);
+        boolean isValidPosition = testSubject.isLegalBoardPosition(5, 5);
         Assert.assertTrue(isValidPosition);
     }
 
     @Test
     public void testIsLegalBoardPosition_False_X_equals_11_Y_equals_5() {
-        boolean isValidPosition = testSubject.IsLegalBoardPosition(11, 5);
-        assertTrue(isValidPosition);
+        boolean isValidPosition = testSubject.isLegalBoardPosition(11, 5);
+        // ?? why assertTrue ?? position (11, 5) is invalid
+        // assertTrue(isValidPosition);
+        assertFalse(isValidPosition);
     }
 
     @Test
     public void testIsLegalBoardPosition_False_X_equals_0_Y_equals_9() {
-        boolean isValidPosition = testSubject.IsLegalBoardPosition(0, 9);
+        boolean isValidPosition = testSubject.isLegalBoardPosition(0, 9);
         assertFalse(isValidPosition);
     }
 
     @Test
     public void testIsLegalBoardPosition_False_X_equals_11_Y_equals_0() {
-        boolean isValidPosition = testSubject.IsLegalBoardPosition(11, 0);
+        boolean isValidPosition = testSubject.isLegalBoardPosition(11, 0);
         assertFalse(isValidPosition);
     }
 
     @Test
     public void testIsLegalBoardPosition_False_For_Negative_Y_Values() {
-        boolean isValidPosition = testSubject.IsLegalBoardPosition(5, -1);
+        boolean isValidPosition = testSubject.isLegalBoardPosition(5, -1);
         Assert.assertFalse(isValidPosition);
     }
 
@@ -80,12 +85,12 @@ public class ChessBoardTest extends TestCase {
         for (int i = 0; i < 10; i++)
         {
             Pawn pawn = new Pawn(PieceColor.BLACK);
-            int row = i / ChessBoard.MAX_BOARD_WIDTH;
-            testSubject.Add(pawn, 6 + row, i % ChessBoard.MAX_BOARD_WIDTH, PieceColor.BLACK);
+            int row = i / ChessUtil.MAX_BOARD_WIDTH;
+            testSubject.Add(pawn, 6 + row, i % ChessUtil.MAX_BOARD_WIDTH, PieceColor.BLACK);
             if (row < 1)
             {
                 assertEquals(6 + row, pawn.getXCoordinate());
-                assertEquals(i % ChessBoard.MAX_BOARD_WIDTH, pawn.getYCoordinate());
+                assertEquals(i % ChessUtil.MAX_BOARD_WIDTH, pawn.getYCoordinate());
             }
             else
             {
@@ -93,5 +98,21 @@ public class ChessBoardTest extends TestCase {
                 Assert.assertEquals(-1, pawn.getYCoordinate());
             }
         }
+    }
+
+    @Test
+    public void testLimits_The_Number_Of_Pawns_Throw_Error()
+    {
+        for (int i = 0; i <= ChessUtil.MAX_BOARD_WIDTH; i++)
+        {
+            Pawn pawn = new Pawn(PieceColor.BLACK);
+            testSubject.Add(pawn, 6, i, PieceColor.BLACK);
+        }
+
+        thrown.expect(UnsupportedOperationException.class);
+        thrown.expectMessage("The maximum number of pieces of the same type has been reached");
+
+        Pawn pawn = new Pawn(PieceColor.BLACK);
+        testSubject.Add(pawn, 5, 0, PieceColor.BLACK);
     }
 }

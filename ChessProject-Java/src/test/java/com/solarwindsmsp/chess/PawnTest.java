@@ -53,5 +53,4 @@ public class PawnTest {
         assertEquals(6, testSubject.getXCoordinate());
         assertEquals(2, testSubject.getYCoordinate());
     }
-
 }
