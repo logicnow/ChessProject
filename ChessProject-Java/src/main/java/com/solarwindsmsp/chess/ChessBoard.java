@@ -15,7 +15,7 @@ public class ChessBoard {
         }
         piece.setChessBoard(this);
 
-        Context context = new Context(getStrategy(piece));
+        Context context = Context.getInstance(piece);
 
         if (!context.isValidNumberOfSamePieceType()) {
             throw new UnsupportedOperationException("The maximum number of pieces of the same type has been reached");
@@ -44,11 +44,5 @@ public class ChessBoard {
     private boolean hasPositionFree(int xCoordinate, int yCoordinate) {
 
         return pieces[xCoordinate][yCoordinate] == null;
-    }
-    private Strategy getStrategy(Piece piece){
-        if(piece instanceof Pawn){
-            return new PawnStrategy((Pawn) piece);
-        }
-        return null;
     }
 }

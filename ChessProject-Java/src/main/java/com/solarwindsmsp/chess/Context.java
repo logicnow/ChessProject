@@ -1,7 +1,7 @@
 package com.solarwindsmsp.chess;
 
 public class Context {
-    private Strategy strategy;
+    private static Strategy strategy;
 
     public Context(Strategy strategy){
         this.strategy = strategy;
@@ -13,5 +13,11 @@ public class Context {
 
     public  boolean isValidNumberOfSamePieceType(){
         return strategy.isValidNumberOfSamePieceType();
+    }
+    public static Context getInstance(Piece piece){
+        StrategyFactory strategyFactory = new StrategyFactory();
+        Strategy strategy  = strategyFactory.createPieceStrategy(piece);
+
+        return new Context(strategy);
     }
 }
