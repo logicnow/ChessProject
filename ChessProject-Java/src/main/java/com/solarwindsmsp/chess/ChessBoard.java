@@ -8,7 +8,7 @@ public class ChessBoard {
         pieces = new Piece[ChessUtil.BOARD_SIZE][ChessUtil.BOARD_SIZE];
     }
 
-    public void Add(Piece piece, int xCoordinate, int yCoordinate, PieceColor pieceColor) {
+    public void Add(Piece piece, int xCoordinate, int yCoordinate) {
 
         if (!this.isLegalBoardPosition(xCoordinate, yCoordinate)) {
             throw new UnsupportedOperationException("Ilegal position for add the piece");
@@ -32,8 +32,7 @@ public class ChessBoard {
     }
 
     public boolean isLegalBoardPosition(int xCoordinate, int yCoordinate) {
-        return
-                xCoordinate >= ChessUtil.MIN_BOARD_WIDTH && xCoordinate <= ChessUtil.MAX_BOARD_HEIGHT
+        return xCoordinate >= ChessUtil.MIN_BOARD_WIDTH && xCoordinate <= ChessUtil.MAX_BOARD_HEIGHT
                 && yCoordinate >= ChessUtil.MIN_BOARD_HEIGHT && yCoordinate <= ChessUtil.MAX_BOARD_WIDTH;
     }
 

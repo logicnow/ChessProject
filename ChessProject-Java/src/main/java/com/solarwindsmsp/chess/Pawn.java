@@ -2,17 +2,13 @@ package com.solarwindsmsp.chess;
 
 public class Pawn extends Piece {
 
-    public static int MAX_NUMBERS_OF_SAME_PIECE_TYPE = 8;
-
     public Pawn(PieceColor pieceColor) {
         super(pieceColor);
     }
 
     public void Move(MovementType movementType, int newX, int newY) {
-        if(
-            this.getChessBoard().isLegalBoardPosition(newX, newY)
-            && this.isLegalPawnPosition(newX, newY, MovementType.MOVE)
-        ){
+        if(this.getChessBoard().isLegalBoardPosition(newX, newY)
+            && this.isLegalPawnPosition(newX, newY, MovementType.MOVE)){
             this.setYCoordinate(newY);
         }
     }
@@ -46,7 +42,11 @@ public class Pawn extends Piece {
 
     private boolean isLegalBlackPawnPosition(int newY, MovementType action){
         if (action.equals(MovementType.MOVE)) {
-            return (PieceColor.BLACK.equals(this.getPieceColor()) && newY < this.getYCoordinate());
+            return (
+                PieceColor.BLACK.equals(this.getPieceColor())
+                && newY < this.getYCoordinate()
+                && this.getYCoordinate() - newY == 1
+            );
         }
         // we need implement for MovementType.CAPTURE
         return false;
@@ -54,7 +54,11 @@ public class Pawn extends Piece {
 
     private boolean isLegalWhitePawnPosition(int newY, MovementType action){
         if (action.equals(MovementType.MOVE)) {
-            return (PieceColor.WHITE.equals(this.getPieceColor()) && newY > this.getYCoordinate());
+            return (
+                PieceColor.WHITE.equals(this.getPieceColor())
+                && newY > this.getYCoordinate()
+                && newY - this.getYCoordinate() == 1
+            );
         }
         // we need implement for MovementType.CAPTURE
         return false;

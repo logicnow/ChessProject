@@ -16,7 +16,7 @@ public class PawnStrategy implements Strategy {
         ChessBoard chessBoard = pawn.getChessBoard();
         int currentNumberOfPawnPieces = this.getCurrentNumberOfPawnPiecesFromChessBoard(chessBoard);
 
-        if (currentNumberOfPawnPieces > pawn.MAX_NUMBERS_OF_SAME_PIECE_TYPE) {
+        if (currentNumberOfPawnPieces > ChessUtil.MAX_NUMBER_OF_PAWNS_OF_THE_SAME_COLOR) {
             return false;
         }
 
@@ -29,7 +29,7 @@ public class PawnStrategy implements Strategy {
 
         for (int i=0; i<=ChessUtil.MAX_BOARD_WIDTH; i++) {
             for (int j=0; j<=ChessUtil.MAX_BOARD_HEIGHT; j++) {
-                if (pieces[i][j] instanceof Pawn && pieces[i][j].getPieceColor() == pawn.getPieceColor()) {
+                if (pieces[i][j] instanceof Pawn && pieces[i][j].getPieceColor().equals(pawn.getPieceColor())) {
                     currentNumber++;
                 }
             }

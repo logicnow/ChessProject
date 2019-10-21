@@ -1,7 +1,7 @@
 package com.solarwindsmsp.chess;
 
 public class Context {
-    private static Strategy strategy;
+    private Strategy strategy;
 
     public Context(Strategy strategy){
         this.strategy = strategy;

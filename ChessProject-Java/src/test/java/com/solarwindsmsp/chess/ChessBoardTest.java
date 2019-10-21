@@ -71,8 +71,8 @@ public class ChessBoardTest extends TestCase {
     public void Avoids_Duplicate_Positioning() {
         Pawn firstPawn = new Pawn(PieceColor.BLACK);
         Pawn secondPawn = new Pawn(PieceColor.BLACK);
-        testSubject.Add(firstPawn, 6, 3, PieceColor.BLACK);
-        testSubject.Add(secondPawn, 6, 3, PieceColor.BLACK);
+        testSubject.Add(firstPawn, 6, 3);
+        testSubject.Add(secondPawn, 6, 3);
         assertEquals(6, firstPawn.getXCoordinate());
         assertEquals(3, firstPawn.getYCoordinate());
         assertEquals(-1, secondPawn.getXCoordinate());
@@ -86,7 +86,7 @@ public class ChessBoardTest extends TestCase {
         {
             Pawn pawn = new Pawn(PieceColor.BLACK);
             int row = i / ChessUtil.MAX_BOARD_WIDTH;
-            testSubject.Add(pawn, 6 + row, i % ChessUtil.MAX_BOARD_WIDTH, PieceColor.BLACK);
+            testSubject.Add(pawn, 6 + row, i % ChessUtil.MAX_BOARD_WIDTH);
             if (row < 1)
             {
                 assertEquals(6 + row, pawn.getXCoordinate());
@@ -106,13 +106,13 @@ public class ChessBoardTest extends TestCase {
         for (int i = 0; i <= ChessUtil.MAX_BOARD_WIDTH; i++)
         {
             Pawn pawn = new Pawn(PieceColor.BLACK);
-            testSubject.Add(pawn, 6, i, PieceColor.BLACK);
+            testSubject.Add(pawn, 6, i);
         }
 
         thrown.expect(UnsupportedOperationException.class);
         thrown.expectMessage("The maximum number of pieces of the same type has been reached");
 
         Pawn pawn = new Pawn(PieceColor.BLACK);
-        testSubject.Add(pawn, 5, 0, PieceColor.BLACK);
+        testSubject.Add(pawn, 5, 0);
     }
 }
