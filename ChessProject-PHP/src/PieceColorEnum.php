@@ -4,7 +4,7 @@ namespace SolarWinds\Chess;
 
 class PieceColorEnum
 {
-    private static $_instance = false;
+    private static $_initialised = false;
     private static $_white;
     private static $_black;
 
@@ -16,7 +16,7 @@ class PieceColorEnum
     }
 
     /** @return: PieceColorEnum */
-    public static function WHITE()
+    public static function WHITE(): PieceColorEnum
     {
         self::initialise();
 
@@ -24,21 +24,28 @@ class PieceColorEnum
     }
 
     /** @return: PieceColorEnum */
-    public static function BLACK()
+    public static function BLACK(): PieceColorEnum
     {
         self::initialise();
 
         return self::$_black;
     }
 
+    public function innerValue()
+    {
+        return $this->_id;
+    }
+
     private static function initialise()
     {
-        if (self::$_instance) {
+        if (self::$_initialised) {
             return;
         }
 
         self::$_white = new PieceColorEnum(1);
         self::$_black = new PieceColorEnum(2);
+
+        self::$_initialised = true;
     }
 
 }
