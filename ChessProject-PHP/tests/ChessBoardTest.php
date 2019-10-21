@@ -17,14 +17,14 @@ class ChessBoardTest extends \PHPUnit_Framework_TestCase
         $this->_testSubject = new ChessBoard();
     }
 
-    public function testHas_MaxBoardWidth_of_7()
+    public function testHas_MaxBoardWidth_of_8()
     {
-        $this->assertEquals(7, ChessBoard::MAX_BOARD_WIDTH);
+        $this->assertEquals(8, ChessBoard::MAX_BOARD_WIDTH);
     }
 
-    public function testHas_MaxBoardHeight_of_7()
+    public function testHas_MaxBoardHeight_of_8()
     {
-        $this->assertEquals(7, ChessBoard::MAX_BOARD_HEIGHT);
+        $this->assertEquals(8, ChessBoard::MAX_BOARD_HEIGHT);
     }
 
     public function testIsLegalBoardPosition_True_X_equals_0_Y_equals_0()
