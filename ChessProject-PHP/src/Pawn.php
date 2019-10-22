@@ -68,7 +68,29 @@ class Pawn
 
     public function move(MovementTypeEnum $movementTypeEnum, $newX, $newY)
     {
-        throw new \Exception("Need to implement " . __METHOD__);
+        switch ($movementTypeEnum) {
+            case MovementTypeEnum::MOVE():
+                if (!$this->chessBoard->isLegalBoardPosition($newX, $newY)
+                || !$this->legalPawnPosition($newX, $newY)) {
+                    return;
+                }
+
+                $this->xCoordinate = $newX;
+                $this->yCoordinate = $newY;
+            break;
+        }
+    }
+
+    protected function legalPawnPosition($newX, $newY)
+    {
+        switch ($this->pieceColorEnum) {
+            case PieceColorEnum::BLACK():
+                $movingForward = $this->xCoordinate - $newX == 1;
+                $movingDiagonally = $movingForward && abs($newY - $this->yCoordinate) == 1;
+
+                return $movingForward || $movingDiagonally;
+
+        }
     }
 
     public function toString()
