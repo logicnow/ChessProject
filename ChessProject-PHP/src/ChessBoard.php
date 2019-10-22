@@ -24,7 +24,7 @@ class ChessBoard
         $this->pieces = array_fill(0, self::MAX_BOARD_WIDTH, array_fill(0, self::MAX_BOARD_HEIGHT, 0));
     }
 
-    public function add(Pawn $pawn, $xCoordinate, $yCoordinate, PieceColorEnum $pieceColor)
+    public function add(Pawn $pawn, $xCoordinate, $yCoordinate)
     {
         if (!empty($this->pieces[$xCoordinate][$yCoordinate])) {
             $pawn->setXCoordinate(-1);
