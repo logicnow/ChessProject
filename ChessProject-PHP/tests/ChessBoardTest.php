@@ -86,13 +86,18 @@ class ChessBoardTest extends \PHPUnit_Framework_TestCase
     {
         for ($i = 0; $i < 10; $i++) {
             $pawn = new Pawn(PieceColorEnum::BLACK());
-            $row = $i / ChessBoard::MAX_BOARD_WIDTH;
+
+            $row = intval($i / ChessBoard::MAX_BOARD_WIDTH);
             $pawn->setXCoordinate(6 + $row);
-            $pawn->setYCoordinate($i % ChessBoard::MAX_BOARD_WIDTH);
+
+            $yCoordinate = intval($i % ChessBoard::MAX_BOARD_WIDTH);
+            $pawn->setYCoordinate($yCoordinate);
+
             $this->_testSubject->add($pawn);
+
             if ($row < 1) {
                 $this->assertEquals(6 + $row, $pawn->getXCoordinate());
-                $this->assertEquals($i % ChessBoard::MAX_BOARD_WIDTH, $pawn->getYCoordinate());
+                $this->assertEquals($yCoordinate, $pawn->getYCoordinate());
             } else {
                 $this->assertEquals(-1, $pawn->getXCoordinate());
                 $this->assertEquals(-1, $pawn->getYCoordinate());

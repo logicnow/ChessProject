@@ -22,31 +22,26 @@ class Pawn
         $this->pieceColorEnum = $pieceColorEnum;
     }
 
-    public function getChesssBoard()
-    {
-        return $this->chessBoard;
-    }
-
-    public function setChessBoard(ChessBoard $chessBoard)
+    public function setChessBoard(ChessBoard $chessBoard): self
     {
         $this->chessBoard = $chessBoard;
+
+        return $this;
     }
 
-    /** @return int */
-    public function getXCoordinate()
+    public function getXCoordinate(): int
     {
         return $this->xCoordinate;
     }
 
-    public function setXCoordinate($value): Pawn
+    public function setXCoordinate(int $value): Pawn
     {
         $this->xCoordinate = $value;
 
         return $this;
     }
 
-    /** @return int */
-    public function getYCoordinate()
+    public function getYCoordinate(): int
     {
         return $this->yCoordinate;
     }
@@ -58,21 +53,16 @@ class Pawn
         return $this;
     }
 
-    public function getPieceColor()
+    public function getPieceColor(): PieceColorEnum
     {
         return $this->pieceColorEnum;
     }
 
-    public function setPieceColor(PieceColorEnum $value)
-    {
-        $this->pieceColorEnum = $value;
-    }
-
-    public function move(MovementTypeEnum $movementTypeEnum, $newX, $newY)
+    public function move(MovementTypeEnum $movementTypeEnum, int $newX, int $newY)
     {
         switch ($movementTypeEnum) {
             case MovementTypeEnum::MOVE():
-                if (!$this->chessBoard->isLegalBoardPosition($newX, $newY) || !$this->legalPawnPosition($newX, $newY)) {
+                if (!$this->chessBoard->isLegalBoardPosition($newX, $newY) || !$this->isLegalPawnPosition($newX, $newY)) {
                     return;
                 }
 
@@ -82,7 +72,7 @@ class Pawn
         }
     }
 
-    protected function legalPawnPosition($newX, $newY)
+    protected function isLegalPawnPosition($newX, $newY): bool
     {
         switch ($this->pieceColorEnum) {
             case PieceColorEnum::BLACK():

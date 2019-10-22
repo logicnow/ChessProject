@@ -45,15 +45,12 @@ class ChessBoard
         $this->pieces[$pawn->getXCoordinate()][$pawn->getYCoordinate()] = $pawn;
     }
 
-    private function maxNumberOfPiecesExceededForColor(PieceColorEnum $pieceColor)
+    private function maxNumberOfPiecesExceededForColor(PieceColorEnum $pieceColor): bool
     {
         return $this->piecesCount[$pieceColor->innerValue()] > $this->maxNumberOfPieces[$pieceColor->innerValue()];
     }
 
-    /**
- 	 * @return boolean
- 	 **/
-    public function isLegalBoardPosition($xCoordinate, $yCoordinate)
+    public function isLegalBoardPosition(int $xCoordinate, int $yCoordinate): bool
     {
         return $xCoordinate >= 0 && $yCoordinate >= 0
             && $xCoordinate < self::MAX_BOARD_HEIGHT && $yCoordinate < self::MAX_BOARD_WIDTH;
