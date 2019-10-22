@@ -38,10 +38,11 @@ class Pawn
         return $this->xCoordinate;
     }
 
-    /** @var int */
-    public function setXCoordinate($value)
+    public function setXCoordinate($value): Pawn
     {
         $this->xCoordinate = $value;
+
+        return $this;
     }
 
     /** @return int */
@@ -50,10 +51,11 @@ class Pawn
         return $this->yCoordinate;
     }
 
-    /** @var int */
-    public function setYCoordinate($value)
+    public function setYCoordinate($value): Pawn
     {
         $this->yCoordinate = $value;
+
+        return $this;
     }
 
     public function getPieceColor()
@@ -70,8 +72,7 @@ class Pawn
     {
         switch ($movementTypeEnum) {
             case MovementTypeEnum::MOVE():
-                if (!$this->chessBoard->isLegalBoardPosition($newX, $newY)
-                || !$this->legalPawnPosition($newX, $newY)) {
+                if (!$this->chessBoard->isLegalBoardPosition($newX, $newY) || !$this->legalPawnPosition($newX, $newY)) {
                     return;
                 }
 

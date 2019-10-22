@@ -24,9 +24,9 @@ class ChessBoard
         $this->pieces = array_fill(0, self::MAX_BOARD_WIDTH, array_fill(0, self::MAX_BOARD_HEIGHT, 0));
     }
 
-    public function add(Pawn $pawn, $xCoordinate, $yCoordinate)
+    public function add(Pawn $pawn)
     {
-        if (!empty($this->pieces[$xCoordinate][$yCoordinate])) {
+        if (!empty($this->pieces[$pawn->getXCoordinate()][$pawn->getYCoordinate()])) {
             $pawn->setXCoordinate(-1);
             $pawn->setYCoordinate(-1);
 
@@ -42,10 +42,7 @@ class ChessBoard
             return;
         }
 
-        $pawn->setXCoordinate($xCoordinate);
-        $pawn->setYCoordinate($yCoordinate);
-
-        $this->pieces[$xCoordinate][$yCoordinate] = $pawn;
+        $this->pieces[$pawn->getXCoordinate()][$pawn->getYCoordinate()] = $pawn;
     }
 
     private function maxNumberOfPiecesExceededForColor(PieceColorEnum $pieceColor)
