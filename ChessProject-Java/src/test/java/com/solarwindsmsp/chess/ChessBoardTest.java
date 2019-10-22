@@ -82,6 +82,7 @@ public class ChessBoardTest extends TestCase {
     @Test
     public void testLimits_The_Number_Of_Pawns()
     {
+        // I don't understand the test. I thought that the xCoordinate represent de column identifier, not row
         for (int i = 0; i < 10; i++)
         {
             Pawn pawn = new Pawn(PieceColor.BLACK);
@@ -94,6 +95,7 @@ public class ChessBoardTest extends TestCase {
             }
             else
             {
+                // the positions (7, 0), (7, ..) are ilegal?
                 assertEquals(-1, pawn.getXCoordinate());
                 Assert.assertEquals(-1, pawn.getYCoordinate());
             }

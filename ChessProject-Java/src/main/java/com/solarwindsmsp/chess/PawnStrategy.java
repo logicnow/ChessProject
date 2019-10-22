@@ -9,6 +9,8 @@ public class PawnStrategy implements Strategy {
     }
 
     public boolean isLegalPosition(int xCoordinate, int yCoordinate) {
+        // why xCoordinate ?? i think it is yCoordinate.
+        // I don't understand the last test from ChessBoardTest (testLimits_The_Number_Of_Pawns)
         return xCoordinate == ChessUtil.MIN_BOARD_HEIGHT || xCoordinate == ChessUtil.MAX_BOARD_WIDTH;
     }
 
