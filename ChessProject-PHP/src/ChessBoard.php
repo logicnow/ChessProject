@@ -7,6 +7,8 @@ class ChessBoard
     const MAX_BOARD_WIDTH = 8;
     const MAX_BOARD_HEIGHT = 8;
 
+    private $maxNumberOfPieces = [];
+
     private $pieces;
 
     private $piecesCount = [];
@@ -15,6 +17,10 @@ class ChessBoard
     {
         $this->piecesCount[PieceColorEnum::WHITE()->innerValue()] = 0;
         $this->piecesCount[PieceColorEnum::BLACK()->innerValue()] = 0;
+
+        $this->maxNumberOfPieces[PieceColorEnum::WHITE()->innerValue()] = 8;
+        $this->maxNumberOfPieces[PieceColorEnum::BLACK()->innerValue()] = 8;
+
         $this->pieces = array_fill(0, self::MAX_BOARD_WIDTH, array_fill(0, self::MAX_BOARD_HEIGHT, 0));
     }
 
@@ -29,7 +35,7 @@ class ChessBoard
 
         $this->piecesCount[$pawn->getPieceColor()->innerValue()]++;
 
-        if ($this->maxNumberOfPiecesExceeded($pawn->getPieceColor())) {
+        if ($this->maxNumberOfPiecesExceededForColor($pawn->getPieceColor())) {
             $pawn->setXCoordinate(-1);
             $pawn->setYCoordinate(-1);
 
@@ -42,9 +48,9 @@ class ChessBoard
         $this->pieces[$xCoordinate][$yCoordinate] = $pawn;
     }
 
-    private function maxNumberOfPiecesExceeded(PieceColorEnum $pieceColor)
+    private function maxNumberOfPiecesExceededForColor(PieceColorEnum $pieceColor)
     {
-        return $this->piecesCount[$pieceColor->innerValue()] >= 2 * self::MAX_BOARD_WIDTH;
+        return $this->piecesCount[$pieceColor->innerValue()] > $this->maxNumberOfPieces[$pieceColor->innerValue()];
     }
 
     /**
