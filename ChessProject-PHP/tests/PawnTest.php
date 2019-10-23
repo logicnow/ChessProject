@@ -72,17 +72,101 @@ class PawnTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(3, $this->_testSubject->getYCoordinate());
     }
 
-    public function testPawn_Move_LegalCoordinates_Forward_UpdatesCoordinates()
+    public function dataPawn_Move_LegalCoordinates_Forward_UpdatesCoordinates()
     {
+        $testCases = [];
+
+        $testCases['black_pawn'] = [
+            \SolarWinds\Chess\PieceColorEnum::BLACK(),
+            6,3,
+            5,3,
+            5,3
+        ];
+
+        $testCases['white_pawn'] = [
+            \SolarWinds\Chess\PieceColorEnum::WHITE(),
+            6,3,
+            7,3,
+            7,3
+        ];
+
+        return $testCases;
+    }
+
+    /**
+     * @dataProvider dataPawn_Move_LegalCoordinates_Forward_UpdatesCoordinates
+     */
+    public function testPawn_Move_LegalCoordinates_Forward_UpdatesCoordinates(
+        \SolarWinds\Chess\PieceColorEnum $pieceColor,
+        int $xCoord, int $yCoord,
+        int $newXCoord, int $newYCoord,
+        int $expectedXCoord, int $expectedYCoord
+    ) {
         $this->_testSubject
-            ->setXCoordinate(6)
-            ->setYCoordinate(3);
+            ->setPieceColorEnum($pieceColor)
+            ->setXCoordinate($xCoord)
+            ->setYCoordinate($yCoord);
 
         $this->_chessBoard->add($this->_testSubject);
 
-        $this->_testSubject->move(MovementTypeEnum::MOVE(), 5, 3);
-        $this->assertEquals(5, $this->_testSubject->getXCoordinate());
-        $this->assertEquals(3, $this->_testSubject->getYCoordinate());
+        $this->_testSubject->move(MovementTypeEnum::MOVE(), $newXCoord, $newYCoord);
+        $this->assertEquals($expectedXCoord, $this->_testSubject->getXCoordinate());
+        $this->assertEquals($expectedYCoord, $this->_testSubject->getYCoordinate());
     }
 
+    public function dataPawn_Move_IllegalCoordinates_Forward_DoesNotMove()
+    {
+        $testCases = [];
+
+        $testCases['black_pawn_illegal_direction'] = [
+            \SolarWinds\Chess\PieceColorEnum::BLACK(),
+            6,3,
+            7,3,
+            6,3,
+        ];
+
+        $testCases['black_pawn_illegal_distance'] = [
+            \SolarWinds\Chess\PieceColorEnum::BLACK(),
+            6,3,
+            4,3,
+            6,3,
+        ];
+
+        $testCases['white_pawn_illegal_direction'] = [
+            \SolarWinds\Chess\PieceColorEnum::WHITE(),
+            6,3,
+            5,3,
+            6,3,
+        ];
+
+        $testCases['white_pawn_illegal_distance'] = [
+            \SolarWinds\Chess\PieceColorEnum::WHITE(),
+            5,3,
+            7,3,
+            5,3,
+        ];
+
+        return $testCases;
+    }
+
+    /**
+     * @dataProvider dataPawn_Move_IllegalCoordinates_Forward_DoesNotMove
+     */
+    public function testPawn_Move_IllegalCoordinates_Forward_DoesNotMove(
+        \SolarWinds\Chess\PieceColorEnum $pieceColor,
+        int $xCoord, int $yCoord,
+        int $newXCoord, int $newYCoord,
+        int $expectedXCoord, int $expectedYCoord
+    ) {
+        $this->_testSubject
+            ->setPieceColorEnum($pieceColor)
+            ->setXCoordinate($xCoord)
+            ->setYCoordinate($yCoord);
+
+        $this->_chessBoard->add($this->_testSubject);
+
+        $this->_testSubject->move(MovementTypeEnum::MOVE(), $newXCoord, $newYCoord);
+        $this->assertEquals($expectedXCoord, $this->_testSubject->getXCoordinate());
+        $this->assertEquals($expectedYCoord, $this->_testSubject->getYCoordinate());
+    }
 }

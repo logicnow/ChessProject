@@ -5,6 +5,8 @@ namespace SolarWinds\Chess;
 
 class Pawn
 {
+    const MAX_PAWN_MOVEMENT_DISTANCE = 1;
+
     /** @var PieceColorEnum */
     private $pieceColorEnum;
 
@@ -53,6 +55,13 @@ class Pawn
         return $this;
     }
 
+    public function setPieceColorEnum(PieceColorEnum $pieceColorEnum): Pawn
+    {
+        $this->pieceColorEnum = $pieceColorEnum;
+
+        return $this;
+    }
+
     public function getPieceColor(): PieceColorEnum
     {
         return $this->pieceColorEnum;
@@ -63,6 +72,7 @@ class Pawn
         switch ($movementTypeEnum) {
             case MovementTypeEnum::MOVE():
                 if (!$this->chessBoard->isLegalBoardPosition($newX, $newY) || !$this->isLegalPawnPosition($newX, $newY)) {
+
                     return;
                 }
 
@@ -76,11 +86,15 @@ class Pawn
     {
         switch ($this->pieceColorEnum) {
             case PieceColorEnum::BLACK():
-                $movingForward = $this->xCoordinate - $newX == 1;
-                $movingDiagonally = $movingForward && abs($newY - $this->yCoordinate) == 1;
+                $movingForward = $this->xCoordinate - $newX == self::MAX_PAWN_MOVEMENT_DISTANCE;
+                $movingDiagonally = $movingForward && abs($newY - $this->yCoordinate) == self::MAX_PAWN_MOVEMENT_DISTANCE;
 
                 return $movingForward || $movingDiagonally;
+            case PieceColorEnum::WHITE():
+                $movingForward = $newX - $this->xCoordinate == self::MAX_PAWN_MOVEMENT_DISTANCE;
+                $movingDiagonally = $movingForward && abs($newY - $this->yCoordinate) == self::MAX_PAWN_MOVEMENT_DISTANCE;
 
+                return $movingForward || $movingDiagonally;
         }
     }
 
