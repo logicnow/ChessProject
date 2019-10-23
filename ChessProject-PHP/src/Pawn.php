@@ -67,19 +67,15 @@ class Pawn
         return $this->pieceColorEnum;
     }
 
-    public function move(MovementTypeEnum $movementTypeEnum, int $newX, int $newY)
+    public function move(int $newX, int $newY)
     {
-        switch ($movementTypeEnum) {
-            case MovementTypeEnum::MOVE():
-                if (!$this->chessBoard->isLegalBoardPosition($newX, $newY) || !$this->isLegalPawnPosition($newX, $newY)) {
+        if (!$this->chessBoard->isLegalBoardPosition($newX, $newY) || !$this->isLegalPawnPosition($newX, $newY)) {
 
-                    return;
-                }
-
-                $this->xCoordinate = $newX;
-                $this->yCoordinate = $newY;
-            break;
+            return;
         }
+
+        $this->xCoordinate = $newX;
+        $this->yCoordinate = $newY;
     }
 
     protected function isLegalPawnPosition($newX, $newY): bool
