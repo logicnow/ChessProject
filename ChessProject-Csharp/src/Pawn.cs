@@ -48,9 +48,11 @@ namespace SolarWinds.MSP.Chess
 
         private bool IsMoveLegal(MovementType movementType, int newX, int newY)
         {
+            // we need to know the board configuration first.
             if ((ChessBoard == null) || (!ChessBoard.IsLegalBoardPosition(newX, newY)))
                 return false;
 
+            // Capture or move? This is the question! :)
             bool bValidMove = false;
             switch (PieceColor)
             {
