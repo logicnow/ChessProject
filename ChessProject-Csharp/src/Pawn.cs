@@ -5,8 +5,8 @@ namespace SolarWinds.MSP.Chess
     public class Pawn
     {
         private ChessBoard chessBoard;
-        private int xCoordinate;
-        private int yCoordinate;
+        private int xCoordinate = -1;
+        private int yCoordinate = -1;
         private PieceColor pieceColor;
         
         public ChessBoard ChessBoard
@@ -40,7 +40,35 @@ namespace SolarWinds.MSP.Chess
 
         public void Move(MovementType movementType, int newX, int newY)
         {
-            throw new NotImplementedException("Need to implement Pawn.Move()");
+            if (!IsMoveLegal(movementType, newX, newY))
+                return;
+
+            ChessBoard.MovePiece(XCoordinate, YCoordinate, newX, newY);
+        }
+
+        private bool IsMoveLegal(MovementType movementType, int newX, int newY)
+        {
+            if ((ChessBoard == null) || (!ChessBoard.IsLegalBoardPosition(newX, newY)))
+                return false;
+
+            bool bValidMove = false;
+            switch (PieceColor)
+            {
+                case PieceColor.Black:
+                    bValidMove = (newY == YCoordinate - 1) && (
+                        (newX == XCoordinate)
+                        || ((movementType == MovementType.Capture) && (Math.Abs(newX - XCoordinate) == 1) && (ChessBoard.GetPieceAtPosition(newX, newY)?.PieceColor != this.PieceColor))
+                        );
+                    break;
+                case PieceColor.White:
+                    bValidMove = (newY == YCoordinate + 1) && (
+                        (newX == XCoordinate)
+                        || ((movementType == MovementType.Capture) && (Math.Abs(newX - XCoordinate) == 1) && (ChessBoard.GetPieceAtPosition(newX, newY)?.PieceColor != this.PieceColor))
+                        );
+                    break;
+            }
+
+            return bValidMove;
         }
 
         public override string ToString()
