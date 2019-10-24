@@ -20,15 +20,16 @@ public class Pawn {
     }
 
     public int getXCoordinate() {
-        return xCoordinate;
+        return (xCoordinate < chessBoard.MAX_BOARD_WIDTH) ? xCoordinate : -1;
     }
 
     public void setXCoordinate(int value) {
         this.xCoordinate = value;
     }
 
-    public int getYCoordinate() {
-        return yCoordinate;
+    public int getYCoordinate()
+    {
+        return (yCoordinate < chessBoard.MAX_BOARD_HEIGHT) ? yCoordinate : -1;
     }
 
     public void setYCoordinate(int value) {
@@ -44,7 +45,35 @@ public class Pawn {
     }
 
     public void Move(MovementType movementType, int newX, int newY) {
-        throw new UnsupportedOperationException("Need to implement Pawn.Move()") ;
+        switch (movementType) {
+            case MOVE:
+                if (pieceColor.equals(PieceColor.WHITE)) {
+                    if (getChesssBoard().getCellInfo(newX, newY) == null && newX == getXCoordinate() && newY == getYCoordinate() + 1)
+                    {
+                        setXCoordinate(newX);
+                        setYCoordinate(newY);
+                    }
+                } else {
+                    if (getChesssBoard().getCellInfo(newX, newY) == null && newX == getXCoordinate() && newY == getYCoordinate() - 1)
+                    {
+                        setXCoordinate(newX);
+                        setYCoordinate(newY);
+                    }
+                }
+
+                break;
+            case CAPTURE:
+
+                if (getChesssBoard().getCellInfo(newX, newY) != null && getChesssBoard().getCellInfo(newX, newY).pieceColor != getPieceColor()
+                    && (Math.abs(newX - xCoordinate) + Math.abs(newY - yCoordinate)) == 2
+                )
+                {
+                    setXCoordinate(newX);
+                    setYCoordinate(newY);
+                }
+                break;
+            default:
+        }
     }
 
     @Override
