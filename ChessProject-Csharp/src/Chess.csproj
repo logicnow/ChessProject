@@ -43,12 +43,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChessBoard.cs" />
-    <Compile Include="MovementType.cs" />
-    <Compile Include="Pawn.cs" />
-    <Compile Include="PieceColor.cs" />
+    <Compile Include="ChessBoards\ChessBoardBase.cs" />
+    <Compile Include="ChessBoards\PlaceColor.cs" />
+    <Compile Include="ChessBoards\RectangularChessBoard.cs" />
+    <Compile Include="ChessPieces\ChessBoardPieceBase.cs" />
+    <Compile Include="ChessPieces\ChessBoardPieceType.cs" />
+    <Compile Include="ChessPieces\ChessPieceFactory.cs" />
+    <Compile Include="Interfaces\ChessBoardInterface.cs" />
+    <Compile Include="Interfaces\ChessBoardPieceInterface.cs" />
+    <Compile Include="Movements\ChessBoardPlace.cs" />
+    <Compile Include="Movements\MovementType.cs" />
+    <Compile Include="ChessPieces\Pawn.cs" />
+    <Compile Include="PieceColor\PieceColor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

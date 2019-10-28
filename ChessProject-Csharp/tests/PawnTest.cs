@@ -9,13 +9,13 @@ namespace SolarWinds.MSP.Chess
     [TestClass]
 	public class PawnTest
 	{
-		private ChessBoard chessBoard;
+		private RectangularChessBoard chessBoard;
 		private Pawn pawn;
 
 		[TestInitialize]
 		public void SetUp()
 		{
-			chessBoard = new ChessBoard();
+			chessBoard = new RectangularChessBoard();
 			pawn = new Pawn(PieceColor.Black);
 		}
 

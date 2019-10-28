@@ -9,24 +9,24 @@ namespace SolarWinds.MSP.Chess
     [TestClass]
 	public class ChessBoardTest
 	{
-		private ChessBoard chessBoard;
+		private RectangularChessBoard chessBoard;
 
         [TestInitialize]
 		public void SetUp()
 		{
-			chessBoard = new ChessBoard();
+			chessBoard = new RectangularChessBoard();
 		}
 
         [TestMethod]
 		public void Has_MaxBoardWidth_of_7()
 		{
-			Assert.AreEqual(ChessBoard.MaxBoardWidth, 7);
+			Assert.AreEqual(RectangularChessBoard.MaxBoardWidth, 7);
 		}
 
         [TestMethod]
 		public void Has_MaxBoardHeight_of_7()
 		{
-			Assert.AreEqual(ChessBoard.MaxBoardHeight, 7);
+			Assert.AreEqual(RectangularChessBoard.MaxBoardHeight, 7);
 		}
 
         [TestMethod]
@@ -97,12 +97,12 @@ namespace SolarWinds.MSP.Chess
 			for (int i = 0; i < 10; i++)
 			{
 				Pawn pawn = new Pawn(PieceColor.Black);
-				int row = i / ChessBoard.MaxBoardWidth;
-				chessBoard.Add(pawn, 6 + row, i % ChessBoard.MaxBoardWidth, PieceColor.Black);
+				int row = i / RectangularChessBoard.MaxBoardWidth;
+				chessBoard.Add(pawn, 6 + row, i % RectangularChessBoard.MaxBoardWidth, PieceColor.Black);
 				if (row < 1)
 				{
 					Assert.AreEqual(pawn.XCoordinate, (6 + row));
-					Assert.AreEqual(pawn.YCoordinate, (i % ChessBoard.MaxBoardWidth));
+					Assert.AreEqual(pawn.YCoordinate, (i % RectangularChessBoard.MaxBoardWidth));
 				}
 				else
 				{
