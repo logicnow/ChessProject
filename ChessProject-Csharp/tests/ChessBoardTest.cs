@@ -10,11 +10,13 @@ namespace SolarWinds.MSP.Chess
 	public class ChessBoardTest
 	{
 		private ChessBoard chessBoard;
+        private Pawn pawn;
 
         [TestInitialize]
 		public void SetUp()
 		{
 			chessBoard = new ChessBoard();
+            pawn = new Pawn(PieceColor.Black);
 		}
 
         [TestMethod]
@@ -32,49 +34,49 @@ namespace SolarWinds.MSP.Chess
         [TestMethod]
 		public void IsLegalBoardPosition_True_X_equals_0_Y_equals_0()
 		{
-			var isValidPosition = chessBoard.IsLegalBoardPosition(0, 0);
+			var isValidPosition = pawn.IsLegalBoardPosition(0, 0);
 			Assert.IsTrue(isValidPosition);
 		}
 
         [TestMethod]
 		public void IsLegalBoardPosition_True_X_equals_5_Y_equals_5()
 		{
-			var isValidPosition = chessBoard.IsLegalBoardPosition(5, 5);
+			var isValidPosition = pawn.IsLegalBoardPosition(5, 5);
             Assert.IsTrue(isValidPosition);
 		}
 
         [TestMethod]
 		public void IsLegalBoardPosition_False_X_equals_11_Y_equals_5()
 		{
-			var isValidPosition = chessBoard.IsLegalBoardPosition(11, 5);
+			var isValidPosition = pawn.IsLegalBoardPosition(11, 5);
             Assert.IsFalse(isValidPosition);
 		}
 
         [TestMethod]
 		public void IsLegalBoardPosition_False_X_equals_0_Y_equals_9()
 		{
-			var isValidPosition = chessBoard.IsLegalBoardPosition(0, 9);
+			var isValidPosition = pawn.IsLegalBoardPosition(0, 9);
             Assert.IsFalse(isValidPosition);
 		}
 
         [TestMethod]
 		public void IsLegalBoardPosition_False_X_equals_11_Y_equals_0()
 		{
-			var isValidPosition = chessBoard.IsLegalBoardPosition(11, 0);
+			var isValidPosition = pawn.IsLegalBoardPosition(11, 0);
             Assert.IsFalse(isValidPosition);
 		}
 
         [TestMethod]
 		public void IsLegalBoardPosition_False_For_Negative_X_Values()
 		{
-			var isValidPosition = chessBoard.IsLegalBoardPosition(-1, 5);
+			var isValidPosition = pawn.IsLegalBoardPosition(-1, 5);
             Assert.IsFalse(isValidPosition);
 		}
 
         [TestMethod]
 		public void IsLegalBoardPosition_False_For_Negative_Y_Values()
 		{
-			var isValidPosition = chessBoard.IsLegalBoardPosition(5, -1);
+			var isValidPosition = pawn.IsLegalBoardPosition(5, -1);
             Assert.IsFalse(isValidPosition);
 		}
 
@@ -83,8 +85,8 @@ namespace SolarWinds.MSP.Chess
 		{
 			Pawn firstPawn = new Pawn(PieceColor.Black);
 			Pawn secondPawn = new Pawn(PieceColor.Black);
-			chessBoard.Add(firstPawn, 6, 3, PieceColor.Black);
-			chessBoard.Add(secondPawn, 6, 3, PieceColor.Black);
+			pawn.Add(firstPawn, 6, 3, PieceColor.Black);
+			pawn.Add(secondPawn, 6, 3, PieceColor.Black);
 			Assert.AreEqual(firstPawn.XCoordinate, 6);
             Assert.AreEqual(firstPawn.YCoordinate, 3);
             Assert.AreEqual(secondPawn.XCoordinate, -1);
@@ -98,7 +100,7 @@ namespace SolarWinds.MSP.Chess
 			{
 				Pawn pawn = new Pawn(PieceColor.Black);
 				int row = i / ChessBoard.MaxBoardWidth;
-				chessBoard.Add(pawn, 6 + row, i % ChessBoard.MaxBoardWidth, PieceColor.Black);
+				pawn.Add(pawn, 6 + row, i % ChessBoard.MaxBoardWidth, PieceColor.Black);
 				if (row < 1)
 				{
 					Assert.AreEqual(pawn.XCoordinate, (6 + row));

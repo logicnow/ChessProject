@@ -57,5 +57,28 @@ namespace SolarWinds.MSP.Chess
             return string.Format("Current X: {1}{0}Current Y: {2}{0}Piece Color: {3}", Environment.NewLine, XCoordinate, YCoordinate, PieceColor);
         }
 
+        // Add Pawn to Board Coordinates
+        public void Add(Pawn pawn, int xCoordinate, int yCoordinate, PieceColor pieceColor)
+        {
+            pawn.XCoordinate = xCoordinate;
+            pawn.YCoordinate = yCoordinate;
+            pawn.PieceColor = pieceColor;
+        }
+
+        public bool IsLegalBoardPosition(int xCoordinate, int yCoordinate)
+        {
+            //
+            // TODO: Check side move on xCoordinate
+            //
+            if (xCoordinate < 0 && yCoordinate < 0)
+            {
+                if (xCoordinate > ChessBoard.MaxBoardWidth + 1 && yCoordinate > ChessBoard.MaxBoardHeight + 1)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 }
