@@ -4,16 +4,9 @@ namespace SolarWinds.MSP.Chess
 {
     public class Pawn
     {
-        private ChessBoard chessBoard;
         private int xCoordinate;
         private int yCoordinate;
         private PieceColor pieceColor;
-        
-        public ChessBoard ChessBoard
-        {
-            get { return chessBoard; }
-            set { chessBoard = value; }
-        }
 
         public int XCoordinate
         {

@@ -7,7 +7,6 @@ namespace SolarWinds.MSP.Chess
         public static readonly int MaxBoardWidth = 7; // 8x8 2D array
         public static readonly int MaxBoardHeight = 7;
         private Pawn[,] pieces;
-        private Pawn pw;
 
         public ChessBoard ()
         {
@@ -16,20 +15,25 @@ namespace SolarWinds.MSP.Chess
             Console.WriteLine("board is: {0}x{1}", MaxBoardHeight+1, MaxBoardWidth+1); // index starts from 0
 
             InitializeBoard();
-
         }
+
          public void InitializeBoard()
         {
-            for (int x = 0; x <= MaxBoardWidth; x++)
+            for (int x = 0; x < MaxBoardWidth; x++)
             {
-                for (int y = 0; y <= MaxBoardHeight; y++)
+                for (int y = 0; y < MaxBoardHeight; y++)
                 {
-                    pw = new Pawn(PieceColor.Black); // pawn to add
-                    pw.Add(pw, x, y, PieceColor.Black);
-                    //Console.WriteLine("Current X: {1}{0}Current Y: {2}{0}Piece Color: {3}", Environment.NewLine, x, y, PieceColor.Black);
-                    Console.WriteLine(pw.ToString());
+
+                    if (x == 0 || x == 1 || x == MaxBoardWidth - 1 || x == MaxBoardWidth - 2) // add to top 2 and bottom 2
+                    {
+                         pieces[x, y] = new Pawn(PieceColor.White);
+                         pieces[x, y].Add(pieces[x, y], x, y, PieceColor.White);
+
+                        Console.WriteLine(pieces[x, y].ToString());
+                    }
                     //
-                    //TODO: Add only 2 rows at top and 2 rows at bottom. / White - Black
+                    //TODO: Add only 2 rows at top and 2 rows at bottom. / Specify White - Black
+
                 }
             }
         }
