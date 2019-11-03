@@ -68,7 +68,6 @@ namespace SolarWinds.MSP.Chess
                 }
             }
             return false;
-
         }
 
         public override string ToString()

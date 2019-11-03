@@ -7,6 +7,7 @@ namespace SolarWinds.MSP.Chess
         public static readonly int MaxBoardWidth = 7;
         public static readonly int MaxBoardHeight = 7;
         private Pawn[,] pieces;
+        private Pawn[] dd;
 
         public ChessBoard ()
         {
@@ -42,6 +43,31 @@ namespace SolarWinds.MSP.Chess
                     //TODO: Add only 2 rows at top and 2 rows at bottom. / Specify White - Black
 
                 }
+            }
+        }
+
+        //
+        // PrintBoar to pretify the Consumer output.
+        public void PrintBoard()
+        {
+            for (int x = 0; x < MaxBoardWidth; x++)
+            {
+                for (int y = 0; y < MaxBoardHeight; y++)
+                {
+                    if (pieces[x, y] == null)
+                    {
+                        Console.Write("  ");
+                    }
+                    else if (pieces[x, y].PieceColor == PieceColor.White)
+                    {
+                        Console.Write("W ");
+                    }
+                    else if (pieces[x, y].PieceColor == PieceColor.Black)
+                    {
+                        Console.Write("B ");
+                    }
+                }
+                Console.WriteLine(" ");
             }
         }
 

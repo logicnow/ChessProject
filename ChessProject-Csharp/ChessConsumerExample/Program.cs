@@ -11,6 +11,8 @@ namespace ChessConsumerExample
         {
             ChessBoard ChessBoard = new ChessBoard();
             //ChessBoard.PrintExampleBoard();
+            ChessBoard.PrintBoard();
+            Console.ReadKey();
         }
     }
 }
