@@ -6,8 +6,7 @@ namespace SolarWinds.MSP.Chess
     {
         public static readonly int MaxBoardWidth = 7;
         public static readonly int MaxBoardHeight = 7;
-        private Pawn[,] pieces;
-        private Pawn[] dd;
+        public static Pawn[,] pieces;
 
         public ChessBoard ()
         {

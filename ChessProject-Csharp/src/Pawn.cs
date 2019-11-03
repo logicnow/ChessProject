@@ -49,10 +49,26 @@ namespace SolarWinds.MSP.Chess
 
         public void Add(Pawn pawn, int xCoordinate, int yCoordinate, PieceColor pieceColor)
         {
-            pawn.XCoordinate = xCoordinate;
-            pawn.YCoordinate = yCoordinate;
-            pawn.PieceColor = pieceColor; 
+            if (IsPositionUsed(pawn,ref xCoordinate,ref yCoordinate) == true)
+            {
+                pawn.XCoordinate = xCoordinate;
+                pawn.YCoordinate = yCoordinate;
+                pawn.PieceColor = pieceColor;
+            }
+        }
 
+        //
+        // Avoids user moving pawns to where he already has pawns
+        public bool IsPositionUsed(Pawn pawn, ref int newX , ref int newY)
+        {
+            if (ChessBoard.pieces[newX,newY] == null && ChessBoard.pieces[newX, newY].pieceColor == pawn.pieceColor) // not null or same color pawn
+            {
+               
+                newX = -1;
+                newY = -1;
+                return false;
+            }
+            return true;
         }
 
         public bool IsLegalBoardPosition(int xCoordinate, int yCoordinate)
