@@ -31,31 +31,25 @@ namespace SolarWinds.MSP.Chess
             this.pieceColor = pieceColor;
         }
 
-        public void Move(MovementType movementType, int newX, int newY)
+        public void Move(Pawn pawn, MovementType movementType, int newX, int newY)
         {
             if(movementType == MovementType.Move)
             {
-                Console.WriteLine("Moved");//implement the Pawn move.
+                pawn.xCoordinate = newX;
+                pawn.yCoordinate = newY;
             }
+            //
+            // TODO: Implement movementType.Capture()
+
             //throw new NotImplementedException("Need to implement Pawn.Move()");
         }
 
-        public override string ToString()
-        {
-            return CurrentPositionAsString();
-        }
-
-        protected string CurrentPositionAsString()
-        {
-            return string.Format("Current X: {1}{0}Current Y: {2}{0}Piece Color: {3}", Environment.NewLine, XCoordinate, YCoordinate, PieceColor);
-        }
-
-        // Add Pawn to Board Coordinates
         public void Add(Pawn pawn, int xCoordinate, int yCoordinate, PieceColor pieceColor)
         {
             pawn.XCoordinate = xCoordinate;
             pawn.YCoordinate = yCoordinate;
-            pawn.PieceColor = pieceColor;
+            pawn.PieceColor = pieceColor; 
+
         }
 
         public bool IsLegalBoardPosition(int xCoordinate, int yCoordinate)
@@ -70,8 +64,18 @@ namespace SolarWinds.MSP.Chess
                     return true;
                 }
             }
-
             return false;
+
+        }
+
+        public override string ToString()
+        {
+            return CurrentPositionAsString();
+        }
+
+        protected string CurrentPositionAsString()
+        {
+            return string.Format("Current X: {1}{0}Current Y: {2}{0}Piece Color: {3}", Environment.NewLine, XCoordinate, YCoordinate, PieceColor);
         }
     }
 }

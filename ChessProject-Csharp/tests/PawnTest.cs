@@ -37,7 +37,7 @@ namespace SolarWinds.MSP.Chess
 		public void Pawn_Move_IllegalCoordinates_Right_DoesNotMove()
 		{
 			pawn.Add(pawn, 6, 3, PieceColor.Black);
-			pawn.Move(MovementType.Move, 7, 3);
+			pawn.Move(pawn, MovementType.Move, 7, 3);
             Assert.AreEqual(pawn.XCoordinate, 6);
             Assert.AreEqual(pawn.YCoordinate, 3);
 		}
@@ -46,7 +46,7 @@ namespace SolarWinds.MSP.Chess
 		public void Pawn_Move_IllegalCoordinates_Left_DoesNotMove()
 		{
 			pawn.Add(pawn, 6, 3, PieceColor.Black);
-			pawn.Move(MovementType.Move, 4, 3);
+			pawn.Move(pawn, MovementType.Move, 4, 3);
             Assert.AreEqual(pawn.XCoordinate, 6);
             Assert.AreEqual(pawn.YCoordinate, 3);
 		}
@@ -55,7 +55,7 @@ namespace SolarWinds.MSP.Chess
 		public void Pawn_Move_LegalCoordinates_Forward_UpdatesCoordinates()
 		{
 			pawn.Add(pawn, 6, 3, PieceColor.Black);
-			pawn.Move(MovementType.Move, 6, 2);
+			pawn.Move(pawn, MovementType.Move, 6, 2);
 			Assert.AreEqual(pawn.XCoordinate, 6);
             Assert.AreEqual(pawn.YCoordinate, 2);
 		}

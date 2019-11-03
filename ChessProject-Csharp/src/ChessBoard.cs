@@ -4,7 +4,7 @@ namespace SolarWinds.MSP.Chess
 {
     public class ChessBoard
     {
-        public static readonly int MaxBoardWidth = 7; // 8x8 2D array
+        public static readonly int MaxBoardWidth = 7;
         public static readonly int MaxBoardHeight = 7;
         private Pawn[,] pieces;
 
@@ -23,11 +23,10 @@ namespace SolarWinds.MSP.Chess
             {
                 for (int y = 0; y < MaxBoardHeight; y++)
                 {
-
                     if (x == 0 || x == 1 || x == MaxBoardWidth - 1 || x == MaxBoardWidth - 2) // add to top 2 and bottom 2
                     {
-                         pieces[x, y] = new Pawn(PieceColor.White);
-                         pieces[x, y].Add(pieces[x, y], x, y, PieceColor.White);
+                        pieces[x, y] = new Pawn(PieceColor.White);
+                        pieces[x, y].Add(pieces[x, y], x, y, PieceColor.White); 
 
                         Console.WriteLine(pieces[x, y].ToString());
                     }
