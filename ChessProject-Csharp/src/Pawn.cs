@@ -30,7 +30,7 @@ namespace SolarWinds.MSP.Chess
         public PieceColor PieceColor
         {
             get { return pieceColor; }
-            private set { pieceColor = value; }
+            set { pieceColor = value; }
         }
 
         public Pawn(PieceColor pieceColor)
