@@ -40,7 +40,11 @@ namespace SolarWinds.MSP.Chess
 
         public void Move(MovementType movementType, int newX, int newY)
         {
-            throw new NotImplementedException("Need to implement Pawn.Move()");
+            if(movementType == MovementType.Move)
+            {
+                Console.WriteLine("Moved");//implement the Pawn move.
+            }
+            //throw new NotImplementedException("Need to implement Pawn.Move()");
         }
 
         public override string ToString()

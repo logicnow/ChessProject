@@ -10,7 +10,7 @@ namespace ChessConsumerExample
         static void Main(string[] args)
         {
             ChessBoard ChessBoard = new ChessBoard();
-            ChessBoard.PrintExampleBoard();
+            //ChessBoard.PrintExampleBoard();
         }
     }
 }

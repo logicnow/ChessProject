@@ -15,9 +15,8 @@ namespace SolarWinds.MSP.Chess
 
             Console.WriteLine("board is: {0}x{1}", MaxBoardHeight+1, MaxBoardWidth+1); // index starts from 0
 
-            pw = new Pawn(PieceColor.Black); // pawn to add
-            Add(pw, 1, 1, PieceColor.Black);
-           
+            InitializeBoard();
+
         }
 
         // Add Pawn to Board Coordinates
@@ -41,19 +40,23 @@ namespace SolarWinds.MSP.Chess
                 }
             }
 
-
             return false;
         }
 
-        public void PrintExampleBoard()
+        public void InitializeBoard()
         {
             for (int x = 0; x <= MaxBoardWidth; x++)
             {
                 for (int y = 0; y <= MaxBoardHeight; y++)
                 {
-                    Console.Write("X ");     
+                    pw = new Pawn(PieceColor.Black); // pawn to add
+                    this.Add(pw, x, y, PieceColor.Black);
+                    //Console.WriteLine("Current X: {1}{0}Current Y: {2}{0}Piece Color: {3}", Environment.NewLine, x, y, PieceColor.Black);
+                    Console.WriteLine(pw.ToString());
+                    //
+                    //TODO: Add only 2 rows at top and 2 rows at bottom. / White - Black
                 }
-                Console.WriteLine("");
+                
             }
 
         }
