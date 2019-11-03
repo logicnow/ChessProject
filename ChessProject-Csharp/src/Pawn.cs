@@ -33,10 +33,13 @@ namespace SolarWinds.MSP.Chess
 
         public void Move(Pawn pawn, MovementType movementType, int newX, int newY)
         {
-            if(movementType == MovementType.Move)
+            if (IsLegalBoardPosition(newX, newY))
             {
-                pawn.xCoordinate = newX;
-                pawn.yCoordinate = newY;
+                if(movementType == MovementType.Move)
+                {
+                    pawn.xCoordinate = newX;
+                    pawn.yCoordinate = newY;
+                }
             }
             //
             // TODO: Implement movementType.Capture()

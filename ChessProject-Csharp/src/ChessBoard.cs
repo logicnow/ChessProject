@@ -23,12 +23,20 @@ namespace SolarWinds.MSP.Chess
             {
                 for (int y = 0; y < MaxBoardHeight; y++)
                 {
-                    if (x == 0 || x == 1 || x == MaxBoardWidth - 1 || x == MaxBoardWidth - 2) // add to top 2 and bottom 2
+                    if (x == 0 || x == 1 ) // add to top 2 and bottom 2
                     {
                         pieces[x, y] = new Pawn(PieceColor.White);
                         pieces[x, y].Add(pieces[x, y], x, y, PieceColor.White); 
 
                         Console.WriteLine(pieces[x, y].ToString());
+                    }
+                    if( x == MaxBoardWidth - 1 || x == MaxBoardWidth - 2)
+                    {
+                        pieces[x, y] = new Pawn(PieceColor.Black);
+                        pieces[x, y].Add(pieces[x, y], x, y, PieceColor.Black);
+
+                        Console.WriteLine(pieces[x, y].ToString());
+
                     }
                     //
                     //TODO: Add only 2 rows at top and 2 rows at bottom. / Specify White - Black
