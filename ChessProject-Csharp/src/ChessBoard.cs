@@ -13,17 +13,19 @@ namespace SolarWinds.MSP.Chess
         {
             pieces = new Pawn[MaxBoardWidth, MaxBoardHeight];
 
+            Console.WriteLine("board is: {0}x{1}", MaxBoardHeight+1, MaxBoardWidth+1); // index starts from 0
+
             pw = new Pawn(PieceColor.Black); // pawn to add
             Add(pw, 1, 1, PieceColor.Black);
-           // PrintExampleBoard();
+           
         }
 
+        // Add Pawn to Board Coordinates
         public void Add(Pawn pawn, int xCoordinate, int yCoordinate, PieceColor pieceColor)
         {
             pawn.XCoordinate = xCoordinate;
             pawn.YCoordinate = yCoordinate;
-            pawn.PieceColor = pieceColor;
-            // throw new NotImplementedException("Need to implement ChessBoard.Add()");
+            pawn.PieceColor = pieceColor;  
         }
 
         public bool IsLegalBoardPosition(int xCoordinate, int yCoordinate)
@@ -31,13 +33,14 @@ namespace SolarWinds.MSP.Chess
             //
             // TODO: Check side move on xCoordinate
             //
-            if (xCoordinate < 0 || yCoordinate < 0)
+            if (xCoordinate < 0 && yCoordinate < 0)
             {
-                if (xCoordinate > MaxBoardWidth + 1 || yCoordinate > MaxBoardHeight + 1)
+                if (xCoordinate > MaxBoardWidth + 1 && yCoordinate > MaxBoardHeight + 1)
                 {
                     return true;
                 }
             }
+
 
             return false;
         }
@@ -48,10 +51,7 @@ namespace SolarWinds.MSP.Chess
             {
                 for (int y = 0; y <= MaxBoardHeight; y++)
                 {
-
-                    Console.Write("X ");
-
-
+                    Console.Write("X ");     
                 }
                 Console.WriteLine("");
             }
