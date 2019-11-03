@@ -60,9 +60,9 @@ namespace SolarWinds.MSP.Chess
             //
             // TODO: Check side move on xCoordinate
             //
-            if (xCoordinate < 0 && yCoordinate < 0)
+            if (xCoordinate >= 0 && yCoordinate >= 0)
             {
-                if (xCoordinate > ChessBoard.MaxBoardWidth + 1 && yCoordinate > ChessBoard.MaxBoardHeight + 1)
+                if (xCoordinate < ChessBoard.MaxBoardWidth && yCoordinate < ChessBoard.MaxBoardHeight)
                 {
                     return true;
                 }
