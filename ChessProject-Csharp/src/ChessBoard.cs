@@ -12,8 +12,6 @@ namespace SolarWinds.MSP.Chess
         {
             pieces = new Pawn[MaxBoardWidth, MaxBoardHeight];
 
-            Console.WriteLine("board is: {0}x{1}", MaxBoardHeight+1, MaxBoardWidth+1); // index starts from 0
-
             InitializeBoard();
         }
 
@@ -30,14 +28,14 @@ namespace SolarWinds.MSP.Chess
                         pieces[x, y] = new Pawn(PieceColor.White);
                         pieces[x, y].Add(pieces[x, y], x, y, PieceColor.White); 
 
-                        Console.WriteLine(pieces[x, y].ToString());
+                        //Console.WriteLine(pieces[x, y].ToString());
                     }
                     if( x == MaxBoardWidth - 1 || x == MaxBoardWidth - 2)
                     {
                         pieces[x, y] = new Pawn(PieceColor.Black);
                         pieces[x, y].Add(pieces[x, y], x, y, PieceColor.Black);
 
-                        Console.WriteLine(pieces[x, y].ToString());
+                        //Console.WriteLine(pieces[x, y].ToString());
 
                     }
                 }
