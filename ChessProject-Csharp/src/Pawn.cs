@@ -2,7 +2,7 @@
 
 namespace SolarWinds.MSP.Chess
 {
-    public class Pawn
+    public class Pawn : BoardPiece
     {
         private int xCoordinate;
         private int yCoordinate;
