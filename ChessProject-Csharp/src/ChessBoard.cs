@@ -38,12 +38,10 @@ namespace SolarWinds.MSP.Chess
                         Console.WriteLine(pieces[x, y].ToString());
 
                     }
-                    //
-                    //TODO: Add only 2 rows at top and 2 rows at bottom. / Specify White - Black
-
                 }
             }
         }
+
 
         //
         // PrintBoar to pretify the Consumer output.

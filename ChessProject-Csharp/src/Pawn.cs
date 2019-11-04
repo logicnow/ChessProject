@@ -49,16 +49,46 @@ namespace SolarWinds.MSP.Chess
 
         public void Add(Pawn pawn, int xCoordinate, int yCoordinate, PieceColor pieceColor)
         {
-            if (IsPositionUsed(pawn,ref xCoordinate,ref yCoordinate) == true)
+            if (ValidateTotalPawn() == true)
             {
-                pawn.XCoordinate = xCoordinate;
-                pawn.YCoordinate = yCoordinate;
-                pawn.PieceColor = pieceColor;
+                if (IsPositionUsed(pawn, ref xCoordinate, ref yCoordinate) == true)
+                {
+                    pawn.XCoordinate = xCoordinate;
+                    pawn.YCoordinate = yCoordinate;
+                    pawn.PieceColor = pieceColor;
+                }
             }
         }
 
+
         //
-        // Avoids user moving pawns to where he already has pawns
+        // Todo: Potential Logic for couting paws
+        public bool ValidateTotalPawn()
+        {
+            int totalWhitePawns = 0, totalBlackPawns = 0;
+            foreach(Pawn pawn in ChessBoard.pieces)
+            {
+                if (pawn != null)
+                {
+                    if (pawn.pieceColor == PieceColor.Black)
+                    {
+                        totalBlackPawns += 1;
+                    }
+                    if (pawn.pieceColor == PieceColor.White)
+                    {
+                        totalWhitePawns += 1;
+                    }
+                }
+            }
+            if(totalWhitePawns < 8 || totalBlackPawns < 8)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        //
+        // TODO: WOrk on logic, at the given time everything seems to be true.
         public bool IsPositionUsed(Pawn pawn, ref int newX , ref int newY)
         {
             if (ChessBoard.pieces[newX,newY] == null && ChessBoard.pieces[newX, newY].pieceColor == pawn.pieceColor) // not null or same color pawn
