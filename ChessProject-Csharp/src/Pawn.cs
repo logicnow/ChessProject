@@ -43,8 +43,6 @@ namespace SolarWinds.MSP.Chess
             }
             //
             // TODO: Implement movementType.Capture()
-
-            //throw new NotImplementedException("Need to implement Pawn.Move()");
         }
 
         public void Add(Pawn pawn, int xCoordinate, int yCoordinate, PieceColor pieceColor)
@@ -60,10 +58,9 @@ namespace SolarWinds.MSP.Chess
             }
         }
 
-
         //
         // Todo: Potential Logic for couting paws
-        public bool ValidateTotalPawn()
+        private bool ValidateTotalPawn()
         {
             int totalWhitePawns = 0, totalBlackPawns = 0;
             foreach(Pawn pawn in ChessBoard.pieces)
@@ -89,11 +86,10 @@ namespace SolarWinds.MSP.Chess
 
         //
         // TODO: WOrk on logic, at the given time everything seems to be true.
-        public bool IsPositionUsed(Pawn pawn, ref int newX , ref int newY)
+        private bool IsPositionUsed(Pawn pawn, ref int newX , ref int newY)
         {
             if (ChessBoard.pieces[newX,newY] == null && ChessBoard.pieces[newX, newY].pieceColor == pawn.pieceColor) // not null or same color pawn
             {
-               
                 newX = -1;
                 newY = -1;
                 return false;

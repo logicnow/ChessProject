@@ -17,7 +17,7 @@ namespace SolarWinds.MSP.Chess
             InitializeBoard();
         }
 
-         public void InitializeBoard()
+        public void InitializeBoard()
         {
             for (int x = 0; x < MaxBoardWidth; x++)
             {
@@ -41,7 +41,6 @@ namespace SolarWinds.MSP.Chess
                 }
             }
         }
-
 
         //
         // PrintBoar to pretify the Consumer output.
