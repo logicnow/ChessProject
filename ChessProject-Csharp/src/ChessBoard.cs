@@ -17,7 +17,9 @@ namespace SolarWinds.MSP.Chess
             InitializeBoard();
         }
 
-        public void InitializeBoard()
+        //
+        // TODO: implemnet Class BoardPiece, using this to initialize the board.
+        public void InitializeBoard() 
         {
             for (int x = 0; x < MaxBoardWidth; x++)
             {
@@ -43,29 +45,29 @@ namespace SolarWinds.MSP.Chess
         }
 
         //
-        // PrintBoar to pretify the Consumer output.
-        public void PrintBoard()
-        {
-            for (int x = 0; x < MaxBoardWidth; x++)
-            {
-                for (int y = 0; y < MaxBoardHeight; y++)
-                {
-                    if (pieces[x, y] == null)
-                    {
-                        Console.Write("  ");
-                    }
-                    else if (pieces[x, y].PieceColor == PieceColor.White)
-                    {
-                        Console.Write("W ");
-                    }
-                    else if (pieces[x, y].PieceColor == PieceColor.Black)
-                    {
-                        Console.Write("B ");
-                    }
-                }
-                Console.WriteLine(" ");
-            }
-        }
+        // PrintBoard to pretify the Consumer output.
+        //public void PrintBoard()
+        //{
+        //    for (int x = 0; x < MaxBoardWidth; x++)
+        //    {
+        //        for (int y = 0; y < MaxBoardHeight; y++)
+        //        {
+        //            if (pieces[x, y] == null)
+        //            {
+        //                Console.Write("  ");
+        //            }
+        //            else if (pieces[x, y].PieceColor == PieceColor.White)
+        //            {
+        //                Console.Write("W ");
+        //            }
+        //            else if (pieces[x, y].PieceColor == PieceColor.Black)
+        //            {
+        //                Console.Write("B ");
+        //            }
+        //        }
+        //        Console.WriteLine(" ");
+        //    }
+        //}
 
     }
 }
