@@ -59,15 +59,15 @@ namespace SolarWinds.MSP.Chess
 
         public void Add(Pawn pawn, int xCoordinate, int yCoordinate, PieceColor pieceColor)
         {
-            if (ValidateTotalPawn() == true)
-            {
-                if (IsPositionUsed(pawn, ref xCoordinate, ref yCoordinate) == true)
-                {
-                    pawn.XCoordinate = xCoordinate;
-                    pawn.YCoordinate = yCoordinate;
-                    pawn.PieceColor = pieceColor;
-                }
-            }
+            //if (ValidateTotalPawn() == true)
+            //{
+            //    if (IsPositionUsed(pawn, ref xCoordinate, ref yCoordinate) == true)
+            //    {
+            pawn.XCoordinate = xCoordinate;
+            pawn.YCoordinate = yCoordinate;
+            pawn.PieceColor = pieceColor;
+            //    }
+            //}
         }
 
         //
