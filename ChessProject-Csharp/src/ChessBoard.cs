@@ -6,12 +6,12 @@ namespace SolarWinds.MSP.Chess
     {
         public static readonly int MaxBoardWidth = 7;
         public static readonly int MaxBoardHeight = 7;
-        public static Pawn[,] pieces;
+        public static Pawn[,] pawnSection;
 
         public ChessBoard ()
         {
-           // pieces = new Pawn();
-            pieces = new Pawn[MaxBoardWidth, MaxBoardHeight];
+            // pieces = new Pawn();
+            pawnSection = new Pawn[MaxBoardWidth, MaxBoardHeight];
 
             //InitializeBoard();
         }
