@@ -13,12 +13,49 @@ namespace SolarWinds.MSP.Chess
         public ChessBoard ()
         {
             // pieces = new Pawn();
-            pawn = new Pawn();
             pawnSection = new Pawn[MaxBoardWidth, MaxBoardHeight];
 
-            //InitializeBoard();
-        }
+            pawn = new Pawn();
 
+            //pawn.PieceColor = PieceColor.White;
+
+            InitializeBoard();
+        }
+        //
+        // TODO: implemnet Class BoardPiece, using this to initialize the board.
+        public void InitializeBoard()
+        {
+            for (int x = 0; x < ChessBoard.MaxBoardWidth; x++)
+            {
+                for (int y = 0; y < ChessBoard.MaxBoardHeight; y++)
+                {
+                    if (x == 0 || x == 1) // add to top 2 and bottom 2
+                    {
+                        //bpawns[x, y] = new Pawn();
+                        //bpawns[x, y].Add(bpawns[x, y], x, y, PieceColor.White);
+                        //ChessBoard.pawnSection[1, 1].Add(ChessBoard.pawnSection[1, 1], 1, 1, PieceColor.Black);
+
+                        pawn.XCoordinate = x;
+                        pawn.YCoordinate = y;
+                        pawn.PieceColor = PieceColor.White;
+                        BoardPiece.bpawns[x, y] = pawn;
+                       // pawnSection[1, 1].Add(pawn);
+                        //Console.WriteLine(pieces[x, y].ToString());
+                    }
+                    if (x == ChessBoard.MaxBoardWidth - 1 || x == ChessBoard.MaxBoardWidth - 2)
+                    {
+                        pawn.XCoordinate = x;
+                        pawn.YCoordinate = y;
+                        pawn.PieceColor = PieceColor.Black;
+                        BoardPiece.bpawns[x, y] = pawn;
+                        //bpawns[x, y] = new Pawn();
+                        // pawnSection[1, 1].Add(pawn, 1, 1, PieceColor.White);
+                        //Console.WriteLine(pieces[x, y].ToString());
+                    }
+                }
+            }
+            pawnSection = BoardPiece.bpawns;
+        }
 
 
         //

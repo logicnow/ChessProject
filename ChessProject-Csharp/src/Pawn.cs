@@ -40,7 +40,9 @@ namespace SolarWinds.MSP.Chess
 
         public Pawn()
         {
-     
+            xCoordinate = 0;
+            yCoordinate = 0;
+            pieceColor = PieceColor.Black;
         }
 
         public void Move(Pawn pawn, MovementType movementType, int newX, int newY)
