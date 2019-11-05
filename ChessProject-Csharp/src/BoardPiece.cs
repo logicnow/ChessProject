@@ -15,7 +15,7 @@ namespace SolarWinds.MSP.Chess
         {
             bpawns = new Pawn[ChessBoard.MaxBoardWidth, ChessBoard.MaxBoardHeight];
 
-            InitializeBoard();
+           // InitializeBoard();
         }
         //
         // TODO: implemnet Class BoardPiece, using this to initialize the board.

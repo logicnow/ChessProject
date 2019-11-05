@@ -40,7 +40,7 @@ namespace SolarWinds.MSP.Chess
 
         public Pawn()
         {
-
+     
         }
 
         public void Move(Pawn pawn, MovementType movementType, int newX, int newY)
