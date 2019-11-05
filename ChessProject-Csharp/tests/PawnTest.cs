@@ -16,7 +16,7 @@ namespace SolarWinds.MSP.Chess
 		public void SetUp()
 		{
 			chessBoard = new ChessBoard();
-			pawn = new Pawn(PieceColor.Black);
+			pawn = new Pawn();
 		}
 
 		[TestMethod]

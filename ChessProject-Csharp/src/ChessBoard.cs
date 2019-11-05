@@ -10,37 +10,13 @@ namespace SolarWinds.MSP.Chess
 
         public ChessBoard ()
         {
+           // pieces = new Pawn();
             pieces = new Pawn[MaxBoardWidth, MaxBoardHeight];
 
-            InitializeBoard();
+            //InitializeBoard();
         }
 
-        //
-        // TODO: implemnet Class BoardPiece, using this to initialize the board.
-        public void InitializeBoard() 
-        {
-            for (int x = 0; x < MaxBoardWidth; x++)
-            {
-                for (int y = 0; y < MaxBoardHeight; y++)
-                {
-                    if (x == 0 || x == 1 ) // add to top 2 and bottom 2
-                    {
-                        pieces[x, y] = new Pawn(PieceColor.White);
-                        pieces[x, y].Add(pieces[x, y], x, y, PieceColor.White); 
 
-                        //Console.WriteLine(pieces[x, y].ToString());
-                    }
-                    if( x == MaxBoardWidth - 1 || x == MaxBoardWidth - 2)
-                    {
-                        pieces[x, y] = new Pawn(PieceColor.Black);
-                        pieces[x, y].Add(pieces[x, y], x, y, PieceColor.Black);
-
-                        //Console.WriteLine(pieces[x, y].ToString());
-
-                    }
-                }
-            }
-        }
 
         //
         // PrintBoard to pretify the Consumer output.
