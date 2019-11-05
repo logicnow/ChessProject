@@ -59,41 +59,15 @@ namespace SolarWinds.MSP.Chess
 
         public void Add(Pawn pawn, int xCoordinate, int yCoordinate, PieceColor pieceColor)
         {
-            //if (ValidateTotalPawn() == true)
-            //{
+            if (BoardPiece.ValidateTotalPawn())
+            {
             //    if (IsPositionUsed(pawn, ref xCoordinate, ref yCoordinate) == true)
             //    {
             pawn.XCoordinate = xCoordinate;
             pawn.YCoordinate = yCoordinate;
             pawn.PieceColor = pieceColor;
             //    }
-            //}
-        }
-
-        //
-        // Todo: Potential Logic for couting paws
-        private bool ValidateTotalPawn()
-        {
-            int totalWhitePawns = 0, totalBlackPawns = 0;
-            foreach(Pawn pawn in ChessBoard.pawnSection)
-            {
-                if (pawn != null)
-                {
-                    if (pawn.pieceColor == PieceColor.Black)
-                    {
-                        totalBlackPawns += 1;
-                    }
-                    if (pawn.pieceColor == PieceColor.White)
-                    {
-                        totalWhitePawns += 1;
-                    }
-                }
             }
-            if(totalWhitePawns < 8 || totalBlackPawns < 8)
-            {
-                return false;
-            }
-            return true;
         }
 
         //

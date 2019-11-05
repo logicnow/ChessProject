@@ -44,5 +44,30 @@ namespace SolarWinds.MSP.Chess
             }
         }
 
+        //
+        // Todo: Potential Logic for couting paws
+        public static bool ValidateTotalPawn()
+        {
+            int totalWhitePawns = 0, totalBlackPawns = 0;
+            foreach (Pawn pawn in ChessBoard.pawnSection)
+            {
+                if (pawn != null)
+                {
+                    if (pawn.PieceColor == PieceColor.Black)
+                    {
+                        totalBlackPawns += 1;
+                    }
+                    if (pawn.PieceColor == PieceColor.White)
+                    {
+                        totalWhitePawns += 1;
+                    }
+                }
+            }
+            if (totalWhitePawns < 8 || totalBlackPawns < 8)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

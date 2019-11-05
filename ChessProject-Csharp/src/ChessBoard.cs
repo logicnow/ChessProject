@@ -8,9 +8,12 @@ namespace SolarWinds.MSP.Chess
         public static readonly int MaxBoardHeight = 7;
         public static Pawn[,] pawnSection;
 
+        private Pawn pawn;
+
         public ChessBoard ()
         {
             // pieces = new Pawn();
+            pawn = new Pawn();
             pawnSection = new Pawn[MaxBoardWidth, MaxBoardHeight];
 
             //InitializeBoard();
