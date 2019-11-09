@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace SolarWinds\Chess;
 
@@ -15,16 +16,14 @@ class PieceColorEnum
         $this->_id = $_id;
     }
 
-    /** @return: PieceColorEnum */
-    public static function WHITE()
+    public static function WHITE() : PieceColorEnum
     {
         self::initialise();
 
         return self::$_white;
     }
 
-    /** @return: PieceColorEnum */
-    public static function BLACK()
+    public static function BLACK() : PieceColorEnum
     {
         self::initialise();
 

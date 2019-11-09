@@ -1,7 +1,7 @@
 <?php
+declare(strict_types=1);
 
 namespace SolarWinds\Chess;
-
 
 class Pawn
 {
@@ -22,7 +22,7 @@ class Pawn
         $this->pieceColorEnum = $pieceColorEnum;
     }
 
-    public function getChesssBoard()
+    public function getChesssBoard(): ChessBoard
     {
         return $this->chessBoard;
     }
@@ -32,31 +32,27 @@ class Pawn
         $this->chessBoard = $chessBoard;
     }
 
-    /** @return int */
-    public function getXCoordinate()
+    public function getXCoordinate(): int
     {
         return $this->xCoordinate;
     }
 
-    /** @var int */
-    public function setXCoordinate($value)
+    public function setXCoordinate(int $value)
     {
         $this->xCoordinate = $value;
     }
 
-    /** @return int */
-    public function getYCoordinate()
+    public function getYCoordinate(): int
     {
         return $this->yCoordinate;
     }
 
-    /** @var int */
-    public function setYCoordinate($value)
+    public function setYCoordinate(int $value)
     {
         $this->yCoordinate = $value;
     }
 
-    public function getPieceColor()
+    public function getPieceColor(): PieceColorEnum
     {
         return $this->pieceColorEnum;
     }

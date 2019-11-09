@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace SolarWinds\Chess;
 
@@ -19,10 +20,7 @@ class ChessBoard
         throw new \ErrorException("Need to implement " . __METHOD__);
     }
 
-    /**
- 	 * @return boolean
- 	 **/
-    public function isLegalBoardPosition($xCoordinate, $yCoordinate)
+    public function isLegalBoardPosition($xCoordinate, $yCoordinate): bool
     {
         throw new \ErrorException("Need to implement " . __METHOD__);
     }
