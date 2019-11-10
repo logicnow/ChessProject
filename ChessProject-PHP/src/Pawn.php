@@ -84,7 +84,7 @@ class Pawn
 		return "x({$this->xCoordinate}), y({$this->yCoordinate}), pieceColor({$this->pieceColorEnum})";
     }
 
-    private function isLegalPawnMovePosition($newX, $newY): bool
+    public function isLegalPawnMovePosition($newX, $newY): bool
     {
         switch ($this->pieceColorEnum) {
             case PieceColorEnum::BLACK():
@@ -92,7 +92,7 @@ class Pawn
             case PieceColorEnum::WHITE():
                 return $newY - $this->yCoordinate === 1 && 0 <= $newX && $newX <= ChessBoard::MAX_BOARD_WIDTH;
             default:
-                throw new \Exception('No suitable pieceColor');
+                return false;
         }
     }
 }
