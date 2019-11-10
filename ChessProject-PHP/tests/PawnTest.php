@@ -11,7 +11,6 @@ use SolarWinds\Chess\PieceColorEnum;
 
 class PawnTest extends \PHPUnit_Framework_TestCase
 {
-
     /** @var  ChessBoard */
     private $_chessBoard;
     /** @var  Pawn */
@@ -33,7 +32,7 @@ class PawnTest extends \PHPUnit_Framework_TestCase
     public function testChessBoard_Add_Sets_YCoordinate()
     {
         $this->_chessBoard->add($this->_testSubject, 6, 3, PieceColorEnum::BLACK());
-        $this->assertEquals(3, $this->_testSubject->getXCoordinate());
+        $this->assertEquals(3, $this->_testSubject->getYCoordinate());
     }
 
     public function testPawn_Move_IllegalCoordinates_Right_DoesNotMove()

@@ -5,8 +5,8 @@ namespace SolarWinds\Chess;
 
 class ChessBoard
 {
-    const MAX_BOARD_WIDTH = 7;
-    const MAX_BOARD_HEIGHT = 7;
+    const MAX_BOARD_WIDTH = 8;
+    const MAX_BOARD_HEIGHT = 8;
 
     private $pieces;
 
@@ -17,11 +17,34 @@ class ChessBoard
 
     public function add(Pawn $pawn, $xCoordinate, $yCoordinate, PieceColorEnum $pieceColor)
     {
-        throw new \ErrorException("Need to implement " . __METHOD__);
+        $pawn->setChessBoard($this);
+
+        if($this->isLegalBoardPosition($xCoordinate, $yCoordinate)
+            && $this->isBoardPositionFree($xCoordinate, $yCoordinate)) {
+            $pawn->setXCoordinate($xCoordinate);
+            $pawn->setYCoordinate($yCoordinate);
+            $pawn->setPieceColor($pieceColor);
+        } else {
+            $pawn->setXCoordinate(-1);
+            $pawn->setYCoordinate(-1);
+            $pawn->setPieceColor($pieceColor);
+        }
+
+        $this->pieces[$xCoordinate][$yCoordinate] = $pawn;
     }
 
-    public function isLegalBoardPosition($xCoordinate, $yCoordinate): bool
+    public function isLegalBoardPosition(int $xCoordinate, int $yCoordinate): bool
     {
-        throw new \ErrorException("Need to implement " . __METHOD__);
+        if ($xCoordinate <= self::MAX_BOARD_WIDTH && $yCoordinate <= self::MAX_BOARD_HEIGHT
+            && $xCoordinate >= 0 && $yCoordinate >= 0) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private function isBoardPositionFree(int $xCoordinate, int $yCoordinate): bool
+    {
+        return ($this->pieces[$xCoordinate][$yCoordinate] == null);
     }
 }

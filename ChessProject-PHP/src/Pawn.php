@@ -5,6 +5,9 @@ namespace SolarWinds\Chess;
 
 class Pawn
 {
+    const MAX_BLACK_PAWNS = 8;
+    const MAX_WHITE_PAWNS = 8;
+
     /** @var PieceColorEnum */
     private $pieceColorEnum;
 
@@ -64,12 +67,33 @@ class Pawn
 
     public function move(MovementTypeEnum $movementTypeEnum, $newX, $newY)
     {
-        throw new \Exception("Need to implement " . __METHOD__);
+        if (!$this->getChesssBoard()->isLegalBoardPosition($newX, $newY)) {
+            return;
+        }
+
+        if (!$this->isLegalPawnMovePosition($newX, $newY)) {
+            return;
+        }
+
+        $this->xCoordinate = $newX;
+        $this->yCoordinate = $newY;
     }
 
     public function toString()
     {
 		return "x({$this->xCoordinate}), y({$this->yCoordinate}), pieceColor({$this->pieceColorEnum})";
+    }
+
+    private function isLegalPawnMovePosition($newX, $newY): bool
+    {
+        switch ($this->pieceColorEnum) {
+            case PieceColorEnum::BLACK():
+                return $this->yCoordinate - $newY === 1 && 0 <= $newX && $newX <= ChessBoard::MAX_BOARD_WIDTH;
+            case PieceColorEnum::WHITE():
+                return $newY - $this->yCoordinate === 1 && 0 <= $newX && $newX <= ChessBoard::MAX_BOARD_WIDTH;
+            default:
+                throw new \Exception('No suitable pieceColor');
+        }
     }
 }
 

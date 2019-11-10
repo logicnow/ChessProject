@@ -3,11 +3,9 @@ declare(strict_types=1);
 
 namespace SolarWinds\Chess;
 
-use SolarWinds\Chess\ChessBoard;
-use SolarWinds\Chess\PieceColorEnum;
-use SolarWinds\Chess\Pawn;
+use PHPUnit_Framework_TestCase;
 
-class ChessBoardTest extends \PHPUnit_Framework_TestCase
+class ChessBoardTest extends PHPUnit_Framework_TestCase
 {
 
     /** @var  ChessBoard */
@@ -18,14 +16,14 @@ class ChessBoardTest extends \PHPUnit_Framework_TestCase
         $this->_testSubject = new ChessBoard();
     }
 
-    public function testHas_MaxBoardWidth_of_7()
+    public function testHas_MaxBoardWidth_of_8()
     {
-        $this->assertEquals(7, ChessBoard::MAX_BOARD_WIDTH);
+        $this->assertEquals(8, ChessBoard::MAX_BOARD_WIDTH);
     }
 
-    public function testHas_MaxBoardHeight_of_7()
+    public function testHas_MaxBoardHeight_of_8()
     {
-        $this->assertEquals(7, ChessBoard::MAX_BOARD_HEIGHT);
+        $this->assertEquals(8, ChessBoard::MAX_BOARD_HEIGHT);
     }
 
     public function testIsLegalBoardPosition_True_X_equals_0_Y_equals_0()
@@ -40,7 +38,7 @@ class ChessBoardTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($isValidPosition);
     }
 
-    public function testIsLegalBoardPosition_False_X_equals_11_Y_equals_5()
+    public function testIsLegalBoardPosition_False_testPawn_Move_LegalCoordinates_Forward_UpdatesCoordinatesX_equals_11_Y_equals_5()
     {
         $isValidPosition = $this->_testSubject->isLegalBoardPosition(11, 5);
         $this->assertFalse($isValidPosition);
@@ -78,18 +76,22 @@ class ChessBoardTest extends \PHPUnit_Framework_TestCase
 
     public function testLimits_The_Number_Of_Pawns()
     {
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < Pawn::MAX_BLACK_PAWNS; $i++) {
             $pawn = new Pawn(PieceColorEnum::BLACK());
-            $row = $i / ChessBoard::MAX_BOARD_WIDTH;
-            $this->_testSubject->add($pawn, 6 + $row, $i % ChessBoard::MAX_BOARD_WIDTH, PieceColorEnum::BLACK());
+            $pawn->setChessBoard($this->_testSubject);
+            $row = intval($i / ChessBoard::MAX_BOARD_WIDTH);
+            $pawn->setXCoordinate($row);
+            $yCoord = intval($i % ChessBoard::MAX_BOARD_WIDTH);
+            $pawn->setYCoordinate($yCoord);
+            $this->_testSubject->add($pawn, (6 + $row), $yCoord, PieceColorEnum::BLACK());
+
             if ($row < 1) {
-                $this->assertEquals(6 + $row, $pawn->getXCoordinate());
-                $this->assertEquals($i % ChessBoard::MAX_BOARD_WIDTH, $pawn->getYCoordinate());
+                $this->assertEquals(intval(6 + $row), $pawn->getXCoordinate());
+                $this->assertEquals($yCoord, $pawn->getYCoordinate());
             } else {
                 $this->assertEquals(-1, $pawn->getXCoordinate());
                 $this->assertEquals(-1, $pawn->getYCoordinate());
             }
         }
     }
-
 }

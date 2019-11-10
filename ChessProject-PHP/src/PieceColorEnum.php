@@ -40,4 +40,9 @@ class PieceColorEnum
         self::$_black = new PieceColorEnum(2);
     }
 
+    public function __toString()
+    {
+        return $this->_id;
+    }
+
 }
