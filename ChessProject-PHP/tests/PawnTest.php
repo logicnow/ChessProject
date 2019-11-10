@@ -38,7 +38,7 @@ class PawnTest extends \PHPUnit_Framework_TestCase
     public function testPawn_Move_IllegalCoordinates_Right_DoesNotMove()
     {
         $this->_chessBoard->add($this->_testSubject, 6, 3, PieceColorEnum::BLACK());
-        $this->_testSubject->move(MovementTypeEnum::MOVE(), 7, 3);
+        $this->_testSubject->move(7, 3);
         $this->assertEquals(6, $this->_testSubject->getXCoordinate());
         $this->assertEquals(3, $this->_testSubject->getYCoordinate());
     }
@@ -46,7 +46,7 @@ class PawnTest extends \PHPUnit_Framework_TestCase
     public function testPawn_Move_IllegalCoordinates_Left_DoesNotMove()
     {
         $this->_chessBoard->add($this->_testSubject, 6, 3, PieceColorEnum::BLACK());
-        $this->_testSubject->move(MovementTypeEnum::MOVE(), 4, 3);
+        $this->_testSubject->move(4, 3);
         $this->assertEquals(6, $this->_testSubject->getXCoordinate());
         $this->assertEquals(3, $this->_testSubject->getYCoordinate());
     }
@@ -54,7 +54,7 @@ class PawnTest extends \PHPUnit_Framework_TestCase
     public function testPawn_Move_LegalCoordinates_Forward_UpdatesCoordinates()
     {
         $this->_chessBoard->add($this->_testSubject, 6, 3, PieceColorEnum::BLACK());
-        $this->_testSubject->move(MovementTypeEnum::MOVE(), 6, 2);
+        $this->_testSubject->move(6, 2);
         $this->assertEquals(6, $this->_testSubject->getXCoordinate());
         $this->assertEquals(2, $this->_testSubject->getYCoordinate());
     }

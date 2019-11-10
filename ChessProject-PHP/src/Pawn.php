@@ -65,7 +65,7 @@ class Pawn
         $this->pieceColorEnum = $value;
     }
 
-    public function move(MovementTypeEnum $movementTypeEnum, $newX, $newY)
+    public function move($newX, $newY)
     {
         if (!$this->getChesssBoard()->isLegalBoardPosition($newX, $newY)) {
             return;
