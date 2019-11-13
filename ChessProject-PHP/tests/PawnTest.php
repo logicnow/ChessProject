@@ -2,15 +2,14 @@
 
 namespace SolarWinds\Chess;
 
+use PHPUnit\Framework\TestCase;
 use SolarWinds\Chess\ChessBoard;
 use SolarWinds\Chess\MovementTypeEnum;
 use SolarWinds\Chess\Pawn;
 use SolarWinds\Chess\PieceColorEnum;
 
-
-class PawnTest extends \PHPUnit_Framework_TestCase
+class PawnTest extends TestCase
 {
-
     /** @var  ChessBoard */
     private $_chessBoard;
     /** @var  Pawn */

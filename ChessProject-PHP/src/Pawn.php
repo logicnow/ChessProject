@@ -2,7 +2,6 @@
 
 namespace SolarWinds\Chess;
 
-
 class Pawn
 {
     /** @var PieceColorEnum */
@@ -32,31 +31,27 @@ class Pawn
         $this->chessBoard = $chessBoard;
     }
 
-    /** @return int */
-    public function getXCoordinate()
+    public function getXCoordinate(): int
     {
         return $this->xCoordinate;
     }
 
-    /** @var int */
-    public function setXCoordinate($value)
+    public function setXCoordinate(int $value)
     {
         $this->xCoordinate = $value;
     }
 
-    /** @return int */
-    public function getYCoordinate()
+    public function getYCoordinate(): int
     {
         return $this->yCoordinate;
     }
 
-    /** @var int */
-    public function setYCoordinate($value)
+    public function setYCoordinate(int $value)
     {
         $this->yCoordinate = $value;
     }
 
-    public function getPieceColor()
+    public function getPieceColor(): string
     {
         return $this->pieceColorEnum;
     }
@@ -66,12 +61,12 @@ class Pawn
         $this->pieceColorEnum = $value;
     }
 
-    public function move(MovementTypeEnum $movementTypeEnum, $newX, $newY)
+    public function move(MovementTypeEnum $movementTypeEnum, int $newX, int $newY)
     {
         throw new \Exception("Need to implement " . __METHOD__);
     }
 
-    public function toString()
+    public function toString(): string
     {
 		return "x({$this->xCoordinate}), y({$this->yCoordinate}), pieceColor({$this->pieceColorEnum})";
     }
