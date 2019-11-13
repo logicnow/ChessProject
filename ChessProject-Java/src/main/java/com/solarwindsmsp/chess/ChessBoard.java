@@ -4,26 +4,20 @@ public class ChessBoard {
 
     public static int MAX_BOARD_WIDTH = 7;
     public static int MAX_BOARD_HEIGHT = 7;
-
-    private Pawn[][] pieces;
+    private PieceInterface[][] pieces;
 
     public ChessBoard() {
         // 0,0 to 7,7 means 8 position java array
         pieces = new Pawn[MAX_BOARD_WIDTH + 1][MAX_BOARD_HEIGHT + 1];
-
     }
 
-    public void Add(Pawn pawn, int xCoordinate, int yCoordinate, PieceColor pieceColor) {
-        if (this.IsLegalBoardPosition(xCoordinate, yCoordinate) &&
-                IsPositionFree(xCoordinate, yCoordinate)) {
-            pawn.setXCoordinate(xCoordinate);
-            pawn.setYCoordinate(yCoordinate);
-            pawn.setChessBoard(this);
-            pieces[xCoordinate][yCoordinate] = pawn;
-
+    public void Add(PieceInterface piece, Coordinates coordinates) {
+        if (this.IsLegalBoardPosition(coordinates.getX(), coordinates.getY()) &&
+                IsPositionFree(coordinates)) {
+            piece.setCoordinates(coordinates);
+            pieces[coordinates.getX()][coordinates.getY()] = piece;
         } else {
-            pawn.setXCoordinate(-1);
-            pawn.setYCoordinate(-1);
+            piece.setCoordinates(new Coordinates(-1, -1));
         }
     }
 
@@ -32,8 +26,7 @@ public class ChessBoard {
                 && yCoordinate >= 0 && yCoordinate <= MAX_BOARD_HEIGHT;
     }
 
-    private boolean IsPositionFree(int xCoordinate, int yCoordinate) {
-
-        return pieces[xCoordinate][yCoordinate] == null;
+    private boolean IsPositionFree(Coordinates coordinates) {
+        return pieces[coordinates.getX()][coordinates.getY()] == null;
     }
 }
