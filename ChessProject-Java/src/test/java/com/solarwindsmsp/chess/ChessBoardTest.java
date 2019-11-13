@@ -67,8 +67,8 @@ public class ChessBoardTest extends TestCase {
     public void testAvoids_Duplicate_Positioning() {
         Pawn firstPawn = new Pawn(PieceColor.BLACK);
         Pawn secondPawn = new Pawn(PieceColor.BLACK);
-        testSubject.Add(firstPawn, 6, 3, PieceColor.BLACK);
-        testSubject.Add(secondPawn, 6, 3, PieceColor.BLACK);
+        testSubject.Add(firstPawn, new Coordinates(6, 3));
+        testSubject.Add(secondPawn, new Coordinates(6, 3));
         assertEquals(6, firstPawn.getXCoordinate());
         assertEquals(3, firstPawn.getYCoordinate());
         assertEquals(-1, secondPawn.getXCoordinate());
@@ -76,20 +76,18 @@ public class ChessBoardTest extends TestCase {
     }
 
     @Test
-    public void testLimits_The_Number_Of_Pawns()
-    {
-        for (int i = 0; i < 10; i++)
-        {
+    public void testLimits_The_Number_Of_Pawns() {
+        for (int i = 0; i < 10; i++) {
             Pawn pawn = new Pawn(PieceColor.BLACK);
             int row = i / ChessBoard.MAX_BOARD_WIDTH;
-            testSubject.Add(pawn, 7 + row, i % ChessBoard.MAX_BOARD_WIDTH, PieceColor.BLACK);
-            if (row < 1)
-            {
+            testSubject.Add(
+                    pawn,
+                    new Coordinates(7 + row, i % ChessBoard.MAX_BOARD_WIDTH)
+            );
+            if (row < 1) {
                 assertEquals(7 + row, pawn.getXCoordinate());
                 assertEquals(i % ChessBoard.MAX_BOARD_WIDTH, pawn.getYCoordinate());
-            }
-            else
-            {
+            } else {
                 assertEquals(-1, pawn.getXCoordinate());
                 Assert.assertEquals(-1, pawn.getYCoordinate());
             }
