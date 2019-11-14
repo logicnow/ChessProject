@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace SolarWinds\Chess;
 
@@ -16,7 +17,7 @@ class MovementTypeEnum
     }
 
     /** @return: MovementTypeEnum */
-    public static function MOVE()
+    public static function MOVE(): MovementTypeEnum
     {
         self::initialise();
 
@@ -24,14 +25,14 @@ class MovementTypeEnum
     }
 
     /** @return: MovementTypeEnum */
-    public static function CAPTURE()
+    public static function CAPTURE(): MovementTypeEnum
     {
         self::initialise();
 
         return self::$_capture;
     }
 
-    private static function initialise()
+    private static function initialise(): void
     {
         if (self::$_instance) {
             return;

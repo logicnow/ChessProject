@@ -1,10 +1,8 @@
 <?php
+declare(strict_types=1);
 
 namespace SolarWinds\Chess;
 
-use SolarWinds\Chess\ChessBoard;
-use SolarWinds\Chess\PieceColorEnum;
-use SolarWinds\Chess\Pawn;
 use PHPUnit\Framework\TestCase;
 
 class ChessBoardTest extends TestCase
@@ -17,14 +15,14 @@ class ChessBoardTest extends TestCase
         $this->_testSubject = new ChessBoard();
     }
 
-    public function testHas_MaxBoardWidth_of_8()
+    public function testHas_MaxBoardWidth_of_7()
     {
-        $this->assertEquals(8, ChessBoard::MAX_BOARD_WIDTH);
+        $this->assertEquals(7, ChessBoard::MAX_BOARD_WIDTH);
     }
 
-    public function testHas_MaxBoardHeight_of_8()
+    public function testHas_MaxBoardHeight_of_7()
     {
-        $this->assertEquals(8, ChessBoard::MAX_BOARD_HEIGHT);
+        $this->assertEquals(7, ChessBoard::MAX_BOARD_HEIGHT);
     }
 
     public function testIsLegalBoardPosition_True_X_equals_0_Y_equals_0()
@@ -90,5 +88,4 @@ class ChessBoardTest extends TestCase
             }
         }
     }
-
 }

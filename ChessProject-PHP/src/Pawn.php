@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace SolarWinds\Chess;
 
@@ -21,14 +22,15 @@ class Pawn
         $this->pieceColorEnum = $pieceColorEnum;
     }
 
-    public function getChesssBoard()
+    public function getChessBoard(): ChessBoard
     {
         return $this->chessBoard;
     }
 
-    public function setChessBoard(ChessBoard $chessBoard)
+    public function setChessBoard(ChessBoard $chessBoard): Pawn
     {
         $this->chessBoard = $chessBoard;
+        return $this;
     }
 
     public function getXCoordinate(): int
@@ -36,9 +38,10 @@ class Pawn
         return $this->xCoordinate;
     }
 
-    public function setXCoordinate(int $value)
+    public function setXCoordinate(int $value): Pawn
     {
         $this->xCoordinate = $value;
+        return $this;
     }
 
     public function getYCoordinate(): int
@@ -46,29 +49,55 @@ class Pawn
         return $this->yCoordinate;
     }
 
-    public function setYCoordinate(int $value)
+    public function setYCoordinate(int $value): Pawn
     {
         $this->yCoordinate = $value;
+        return $this;
     }
 
-    public function getPieceColor(): string
+    public function getPieceColor(): PieceColorEnum
     {
         return $this->pieceColorEnum;
     }
 
-    public function setPieceColor(PieceColorEnum $value)
+    public function setPieceColor(PieceColorEnum $value): Pawn
     {
         $this->pieceColorEnum = $value;
+        return $this;
     }
 
-    public function move(MovementTypeEnum $movementTypeEnum, int $newX, int $newY)
+    public function move(int $newX, int $newY): void
     {
-        throw new \Exception("Need to implement " . __METHOD__);
+        if (!$this->getChessBoard()->isLegalBoardPosition($newX, $newY)) {
+            return;
+        }
+
+        if (!$this->isLegalPawnMovePosition($newX, $newY)) {
+            return;
+        }
+
+        $this->xCoordinate = $newX;
+        $this->yCoordinate = $newY;
     }
 
     public function toString(): string
     {
-		return "x({$this->xCoordinate}), y({$this->yCoordinate}), pieceColor({$this->pieceColorEnum})";
+		return sprintf("x(%s), y(%s), pieceColor(%s)",
+            $this->xCoordinate,
+            $this->yCoordinate,
+            $this->pieceColorEnum
+        );
+    }
+
+    public function isLegalPawnMovePosition(int $newX, int $newY): bool
+    {
+        switch ($this->pieceColorEnum) {
+            case PieceColorEnum::BLACK():
+                return $this->yCoordinate - $newY === 1 && 0 <= $newX && $newX <= ChessBoard::MAX_BOARD_WIDTH;
+            case PieceColorEnum::WHITE():
+                return $newY - $this->yCoordinate === 1 && 0 <= $newX && $newX <= ChessBoard::MAX_BOARD_WIDTH;
+            default:
+                return false;
+        }
     }
 }
-
