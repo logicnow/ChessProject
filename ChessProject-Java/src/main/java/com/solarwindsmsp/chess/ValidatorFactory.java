@@ -16,7 +16,7 @@ public class ValidatorFactory {
             PawnValidator validator = (PawnValidator) validatorMap.get("pawn");
             if (validator == null) {
                 validator = new PawnValidator();
-                validatorMap.put("Pawn", validator);
+                validatorMap.put("pawn", validator);
             }
 
             return validator;
