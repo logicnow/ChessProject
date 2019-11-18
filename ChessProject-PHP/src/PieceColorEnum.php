@@ -53,4 +53,9 @@ class PieceColorEnum
                 return self::BLACK_COLOUR;
         }
     }
+
+    public function getId(): int
+    {
+        return $this->_id;
+    }
 }
