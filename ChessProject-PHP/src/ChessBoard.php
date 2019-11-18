@@ -5,8 +5,8 @@ namespace SolarWinds\Chess;
 
 class ChessBoard
 {
-    const MAX_BOARD_WIDTH = 7;
-    const MAX_BOARD_HEIGHT = 7;
+    const MAX_BOARD_WIDTH = 8;
+    const MAX_BOARD_HEIGHT = 8;
 
     /** @var array */
     private $pieces;
