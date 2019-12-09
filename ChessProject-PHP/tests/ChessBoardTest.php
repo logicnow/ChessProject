@@ -1,9 +1,6 @@
 <?php
 
-namespace SolarWinds\Chess;
-
-
-use PHPUnit_Framework_TestCase;
+use SolarWinds\Chess\ChessBoard;
 use SolarWinds\Chess\Pieces\Traits\Color;
 use SolarWinds\Chess\Pieces\Types\Pawn;
 
@@ -76,18 +73,16 @@ class ChessBoardTest extends PHPUnit_Framework_TestCase
 
     public function testLimits_The_Number_Of_Pawns()
     {
-        for ($i = 0; $i < 10; $i++) {
+        for ($row = 0; $row < ChessBoard::MAX_BOARD_WIDTH + 1; $row++) {
             $pawn = new Pawn(Color::BLACK());
-            $row = ceil($i / ChessBoard::MAX_BOARD_WIDTH);
-            $this->testSubject->add($pawn, 7 + $row, $i % ChessBoard::MAX_BOARD_WIDTH);
-            if ($row < 1) {
-                $this->assertEquals(7 + $row, $pawn->getXCoordinate());
-                $this->assertEquals($i % ChessBoard::MAX_BOARD_WIDTH, $pawn->getYCoordinate());
+            $this->testSubject->add($pawn, $row, ChessBoard::MAX_BOARD_HEIGHT - 1);
+            if ($row < ChessBoard::MAX_BOARD_WIDTH) {
+                $this->assertEquals($row, $pawn->getXCoordinate());
+                $this->assertEquals(ChessBoard::MAX_BOARD_HEIGHT - 1, $pawn->getYCoordinate());
             } else {
                 $this->assertEquals(-1, $pawn->getXCoordinate());
                 $this->assertEquals(-1, $pawn->getYCoordinate());
             }
         }
     }
-
 }
