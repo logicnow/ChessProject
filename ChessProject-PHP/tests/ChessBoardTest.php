@@ -3,7 +3,8 @@
 namespace SolarWinds\Chess;
 
 use SolarWinds\Chess\ChessBoard;
-use SolarWinds\Chess\PieceColorEnum;
+use SolarWinds\Chess\PieceColor;
+use SolarWinds\Chess\Factory\PieceFactory;
 use SolarWinds\Chess\Pawn;
 
 class ChessBoardTest extends \PHPUnit_Framework_TestCase
@@ -68,8 +69,8 @@ class ChessBoardTest extends \PHPUnit_Framework_TestCase
         $pieceColorBlack = new PieceColor(PieceColor::BLACK);
         $pieceColorWhite = new PieceColor(PieceColor::WHITE);
 
-        $firstPawn = new Pawn($pieceColorWhite);
-        $secondPawn = new Pawn($pieceColorBlack);
+        $firstPawn = PieceFactory::create(PieceFactory::PAWN, $pieceColorWhite);
+        $secondPawn = PieceFactory::create(PieceFactory::PAWN,$pieceColorBlack);
         $this->_testSubject->add($firstPawn, 6, 3);
         $this->_testSubject->add($secondPawn, 6, 3);
         $this->assertEquals(6, $firstPawn->getXCoordinate());
@@ -83,7 +84,7 @@ class ChessBoardTest extends \PHPUnit_Framework_TestCase
         $pieceColorBlack = new PieceColor(PieceColor::BLACK);
 
         for ($i = 0; $i < 10; $i++) {
-            $pawn = new Pawn($pieceColorBlack);
+            $pawn = PieceFactory::create(PieceFactory::PAWN, $pieceColorBlack);
             $row = $i / ChessBoard::MAX_BOARD_WIDTH;
             $this->_testSubject->add($pawn, 6, $i % ChessBoard::MAX_BOARD_WIDTH);
             if ($row < 1) {

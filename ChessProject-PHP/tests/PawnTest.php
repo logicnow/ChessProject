@@ -3,14 +3,13 @@
 namespace SolarWinds\Chess;
 
 use SolarWinds\Chess\ChessBoard;
-use SolarWinds\Chess\MovementTypeEnum;
 use SolarWinds\Chess\Pawn;
-use SolarWinds\Chess\PieceColorEnum;
-
+use SolarWinds\Chess\PieceColor;
+use SolarWinds\Chess\MovementType;
+use SolarWinds\Chess\Factory\PieceFactory;
 
 class PawnTest extends \PHPUnit_Framework_TestCase
 {
-
     /** @var  ChessBoard */
     private $_chessBoard;
     /** @var  Pawn */
@@ -21,7 +20,7 @@ class PawnTest extends \PHPUnit_Framework_TestCase
         $pieceColorBlack = new PieceColor(PieceColor::BLACK);
 
         $this->_chessBoard = new ChessBoard();
-        $this->_testSubject = new Pawn($pieceColorBlack);
+        $this->_testSubject = PieceFactory::create(PieceFactory::PAWN, $pieceColorBlack);
 
     }
 
@@ -65,5 +64,24 @@ class PawnTest extends \PHPUnit_Framework_TestCase
         $this->_testSubject->move($movementType, 5, 2);
         $this->assertEquals(5, $this->_testSubject->getXCoordinate());
         $this->assertEquals(2, $this->_testSubject->getYCoordinate());
+    }
+
+    public function testPawn_Moves_Outside_Board()
+    {
+        $movementType = new MovementType(MovementType::CAPTURE);
+
+        $this->_chessBoard->add($this->_testSubject, 0,7);
+        $this->_testSubject->move($movementType, 1, 8);
+        $this->assertEquals(-1, $this->_testSubject->getXCoordinate());
+        $this->assertEquals(-1, $this->_testSubject->getYCoordinate());
+    }
+
+    public function testBlack_Pawn_Moves_Backwards()
+    {
+        $movementType = new MovementType(MovementType::MOVE);
+        $this->_chessBoard->add($this->_testSubject, 5,5);
+        $this->_testSubject->move($movementType, 6, 5);
+        $this->assertEquals(5, $this->_testSubject->getXCoordinate());
+        $this->assertEquals(5, $this->_testSubject->getYCoordinate());
     }
 }

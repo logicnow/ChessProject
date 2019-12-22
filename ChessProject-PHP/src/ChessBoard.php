@@ -18,7 +18,7 @@ class ChessBoard
         );
     }
 
-    public function add(Pawn $pawn, int $xCoordinate, int $yCoordinate)
+    public function add(Piece $pawn, int $xCoordinate, int $yCoordinate)
     {
         if ($this->isLegalBoardPosition($xCoordinate, $yCoordinate) &&
             $this->pieces[$xCoordinate][$yCoordinate] === 0
