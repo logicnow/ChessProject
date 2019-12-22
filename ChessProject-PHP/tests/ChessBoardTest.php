@@ -65,10 +65,13 @@ class ChessBoardTest extends \PHPUnit_Framework_TestCase
 
     public function testAvoids_Duplicate_Positioning()
     {
-        $firstPawn = new Pawn(PieceColorEnum::BLACK());
-        $secondPawn = new Pawn(PieceColorEnum::BLACK());
-        $this->_testSubject->add($firstPawn, 6, 3, PieceColorEnum::BLACK());
-        $this->_testSubject->add($secondPawn, 6, 3, PieceColorEnum::BLACK());
+        $pieceColorBlack = new PieceColor(PieceColor::BLACK);
+        $pieceColorWhite = new PieceColor(PieceColor::WHITE);
+
+        $firstPawn = new Pawn($pieceColorWhite);
+        $secondPawn = new Pawn($pieceColorBlack);
+        $this->_testSubject->add($firstPawn, 6, 3);
+        $this->_testSubject->add($secondPawn, 6, 3);
         $this->assertEquals(6, $firstPawn->getXCoordinate());
         $this->assertEquals(3, $firstPawn->getYCoordinate());
         $this->assertEquals(-1, $secondPawn->getXCoordinate());
@@ -77,12 +80,14 @@ class ChessBoardTest extends \PHPUnit_Framework_TestCase
 
     public function testLimits_The_Number_Of_Pawns()
     {
+        $pieceColorBlack = new PieceColor(PieceColor::BLACK);
+
         for ($i = 0; $i < 10; $i++) {
-            $pawn = new Pawn(PieceColorEnum::BLACK());
+            $pawn = new Pawn($pieceColorBlack);
             $row = $i / ChessBoard::MAX_BOARD_WIDTH;
-            $this->_testSubject->add($pawn, 6 + $row, $i % ChessBoard::MAX_BOARD_WIDTH, PieceColorEnum::BLACK());
+            $this->_testSubject->add($pawn, 6, $i % ChessBoard::MAX_BOARD_WIDTH);
             if ($row < 1) {
-                $this->assertEquals(6 + $row, $pawn->getXCoordinate());
+                $this->assertEquals(6, $pawn->getXCoordinate());
                 $this->assertEquals($i % ChessBoard::MAX_BOARD_WIDTH, $pawn->getYCoordinate());
             } else {
                 $this->assertEquals(-1, $pawn->getXCoordinate());

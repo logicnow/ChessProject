@@ -2,14 +2,12 @@
 
 namespace SolarWinds\Chess;
 
+use SolarWinds\Chess\PieceColor;
 
 class Pawn
 {
-    /** @var PieceColorEnum */
-    private $pieceColorEnum;
-
-    /** @var ChessBoard */
-    private $chessBoard;
+    /** @var int */
+    private $pieceColor;
 
     /** @var int */
     private $xCoordinate;
@@ -17,63 +15,71 @@ class Pawn
     /** @var int */
     private $yCoordinate;
 
-    public function __construct(PieceColorEnum $pieceColorEnum)
+    public function __construct(PieceColor $color)
     {
-        $this->pieceColorEnum = $pieceColorEnum;
-    }
-
-    public function getChesssBoard()
-    {
-        return $this->chessBoard;
-    }
-
-    public function setChessBoard(ChessBoard $chessBoard)
-    {
-        $this->chessBoard = $chessBoard;
+        $this->pieceColor = $color;
     }
 
     /** @return int */
-    public function getXCoordinate()
+    public function getXCoordinate(): int
     {
         return $this->xCoordinate;
     }
 
     /** @var int */
-    public function setXCoordinate($value)
+    public function setXCoordinate($value): self
     {
         $this->xCoordinate = $value;
+
+        return $this;
     }
 
     /** @return int */
-    public function getYCoordinate()
+    public function getYCoordinate(): int
     {
         return $this->yCoordinate;
     }
 
     /** @var int */
-    public function setYCoordinate($value)
+    public function setYCoordinate($value): self
     {
         $this->yCoordinate = $value;
+
+        return $this;
     }
 
-    public function getPieceColor()
+    public function getPieceColor(): int
     {
-        return $this->pieceColorEnum;
+        return $this->pieceColor->getColor();
     }
 
-    public function setPieceColor(PieceColorEnum $value)
+    public function move(MovementType $movementType, $newX, $newY)
     {
-        $this->pieceColorEnum = $value;
-    }
+        if (($this->getPieceColor() === PieceColor::BLACK && $this->xCoordinate - $newX !== 1) ||
+            ($this->getPieceColor() === PieceColor::WHITE && $this->xCoordinate - $newX !== -1)
+        ) {
+            return;
+        } elseif ($this->getPieceColor() === PieceColor::WHITE && $this->xCoordinate - $newX !== -1) {
+            return;
+        }
 
-    public function move(MovementTypeEnum $movementTypeEnum, $newX, $newY)
-    {
-        throw new \Exception("Need to implement " . __METHOD__);
+        if ($movementType === MovementType::MOVE && $this->yCoordinate !== $newY) {
+            return;
+        }
+
+        if ($movementType === MovementType::CAPTURE &&
+           ($newY !== $this->yCoordinate && $newY !== $this->yCoordinate - 1 && $newY !== $this->yCoordinate + 1))
+        {
+            return;
+        }
+
+        $this->xCoordinate = $newX;
+        $this->yCoordinate = $newY;
     }
 
     public function toString()
     {
-		return "x({$this->xCoordinate}), y({$this->yCoordinate}), pieceColor({$this->pieceColorEnum})";
+		return "x({$this->xCoordinate}), y({$this->yCoordinate}), pieceColor({$this->pieceColor->getColor()})";
     }
 }
 
