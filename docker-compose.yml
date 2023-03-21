@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  jdk:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes: 
+      - ./:/jdk
+    stdin_open: true
+    tty: true
+    container_name: jdk
+    working_dir: /jdk
