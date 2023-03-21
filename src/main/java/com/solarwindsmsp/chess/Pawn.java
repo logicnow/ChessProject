@@ -50,13 +50,46 @@ public class Pawn {
 
     public void Move(MovementType movementType, int newX, int newY) {
         if (movementType == MovementType.MOVE) {
-            if (newX == xCoordinate && newY == yCoordinate - 1) {
-                if (chessBoard.IsLegalBoardPosition(newX, newY)) {
-                    yCoordinate = newY;
+            if (this.pieceColor == PieceColor.BLACK) {
+                if (newY == this.yCoordinate - 1 && chessBoard.getPieceAt(newX, newY) == null) {
+                    chessBoard.removePiece(this.xCoordinate, this.yCoordinate);
+                    this.xCoordinate = newX;
+                    this.yCoordinate = newY;
+                    chessBoard.Add(this, newX, newY, PieceColor.BLACK);
+                }
+            } else {
+                if (newY == this.yCoordinate + 1 && chessBoard.getPieceAt(newX, newY) == null) {
+                    chessBoard.removePiece(this.xCoordinate, this.yCoordinate);
+                    this.xCoordinate = newX;
+                    this.yCoordinate = newY;
+                    chessBoard.Add(this, newX, newY, PieceColor.WHITE);
+                }
+            }
+        } else if (movementType == MovementType.CAPTURE) {
+            if (this.pieceColor == PieceColor.BLACK) {
+                if (newY == this.yCoordinate - 1 && Math.abs(newX - this.xCoordinate) == 1
+                        && chessBoard.getPieceAt(newX, newY) != null
+                        && chessBoard.getPieceAt(newX, newY).getPieceColor() == PieceColor.WHITE) {
+                    chessBoard.removePiece(newX, newY);
+                    chessBoard.removePiece(this.xCoordinate, this.yCoordinate);
+                    this.xCoordinate = newX;
+                    this.yCoordinate = newY;
+                    chessBoard.Add(this, newX, newY, PieceColor.BLACK);
+                }
+            } else {
+                if (newY == this.yCoordinate + 1 && Math.abs(newX - this.xCoordinate) == 1
+                        && chessBoard.getPieceAt(newX, newY) != null
+                        && chessBoard.getPieceAt(newX, newY).getPieceColor() == PieceColor.BLACK) {
+                    chessBoard.removePiece(newX, newY);
+                    chessBoard.removePiece(this.xCoordinate, this.yCoordinate);
+                    this.xCoordinate = newX;
+                    this.yCoordinate = newY;
+                    chessBoard.Add(this, newX, newY, PieceColor.WHITE);
                 }
             }
         }
     }
+    
 
     @Override
     public String toString() {
