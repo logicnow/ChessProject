@@ -41,7 +41,7 @@ public class ChessBoardTest extends TestCase {
     @Test
     public void testIsLegalBoardPosition_False_X_equals_11_Y_equals_5() {
         boolean isValidPosition = testSubject.IsLegalBoardPosition(11, 5);
-        assertTrue(isValidPosition);
+        assertFalse(isValidPosition);
     }
 
     @Test
@@ -63,7 +63,7 @@ public class ChessBoardTest extends TestCase {
     }
 
     @Test
-    public void Avoids_Duplicate_Positioning() {
+    public void test_Avoids_Duplicate_Positioning() {
         Pawn firstPawn = new Pawn(PieceColor.BLACK);
         Pawn secondPawn = new Pawn(PieceColor.BLACK);
         testSubject.Add(firstPawn, 6, 3, PieceColor.BLACK);
@@ -73,6 +73,7 @@ public class ChessBoardTest extends TestCase {
         assertEquals(-1, secondPawn.getXCoordinate());
         assertEquals(-1, secondPawn.getYCoordinate());
     }
+    
 
     @Test
     public void testLimits_The_Number_Of_Pawns()
@@ -94,4 +95,6 @@ public class ChessBoardTest extends TestCase {
             }
         }
     }
+    
+   
 }
