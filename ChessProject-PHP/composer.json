@@ -5,13 +5,16 @@
     "authors": [
         {
             "name": "Technical Assessment for engineering",
-            "email": "info@example.com"
+            "email": "no-reply@n-able.com"
         }
     ],
-    "require": {
-        "phpunit/phpunit": "^5.7"
-    },
     "autoload": {
         "psr-4": { "TechnicalAssessment\\Chess\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "TechnicalAssessment\\Tests\\Chess\\": "tests/" }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.2"
     }
 }

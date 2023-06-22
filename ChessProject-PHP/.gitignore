@@ -1,4 +1,6 @@
-vendor
-vendor/*
+vendor/
+var/
 .idea/
 composer.phar
+phpunit.xml
+.phpunit.result.cache
