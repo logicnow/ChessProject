@@ -1,4 +1,4 @@
-﻿namespace SolarWinds.MSP.Chess
+﻿namespace TechnicalAssessment.Chess
 {
     public enum MovementType
     {

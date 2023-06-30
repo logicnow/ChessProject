@@ -1,4 +1,4 @@
-package com.solarwindsmsp.chess;
+package com.technicalassessment.chess;
 
 public class Pawn {
 

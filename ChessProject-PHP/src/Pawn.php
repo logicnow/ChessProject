@@ -1,28 +1,26 @@
 <?php
 
-namespace SolarWinds\Chess;
+namespace TechnicalAssessment\Chess;
 
+
+use Exception;
 
 class Pawn
 {
-    /** @var PieceColorEnum */
-    private $pieceColorEnum;
+    private PieceColorEnum $pieceColorEnum;
 
-    /** @var ChessBoard */
-    private $chessBoard;
+    private ChessBoard $chessBoard;
 
-    /** @var int */
-    private $xCoordinate;
+    private int $xCoordinate;
 
-    /** @var int */
-    private $yCoordinate;
+    private int $yCoordinate;
 
     public function __construct(PieceColorEnum $pieceColorEnum)
     {
         $this->pieceColorEnum = $pieceColorEnum;
     }
 
-    public function getChesssBoard()
+    public function getChesssBoard(): ChessBoard
     {
         return $this->chessBoard;
     }
@@ -32,48 +30,46 @@ class Pawn
         $this->chessBoard = $chessBoard;
     }
 
-    /** @return int */
-    public function getXCoordinate()
+    public function getXCoordinate(): int
     {
         return $this->xCoordinate;
     }
 
-    /** @var int */
-    public function setXCoordinate($value)
+    public function setXCoordinate(int $value): void
     {
         $this->xCoordinate = $value;
     }
 
-    /** @return int */
-    public function getYCoordinate()
+    public function getYCoordinate(): int
     {
         return $this->yCoordinate;
     }
 
-    /** @var int */
-    public function setYCoordinate($value)
+    public function setYCoordinate(int $value): void
     {
         $this->yCoordinate = $value;
     }
 
-    public function getPieceColor()
+    public function getPieceColor(): PieceColorEnum
     {
         return $this->pieceColorEnum;
     }
 
-    public function setPieceColor(PieceColorEnum $value)
+    public function setPieceColor(PieceColorEnum $value): void
     {
         $this->pieceColorEnum = $value;
     }
 
-    public function move(MovementTypeEnum $movementTypeEnum, $newX, $newY)
+    /**
+     * @throws Exception
+     */
+    public function move(MovementTypeEnum $movementTypeEnum, int $newX, int $newY): void
     {
-        throw new \Exception("Need to implement " . __METHOD__);
+        throw new Exception("Need to implement " . __METHOD__);
     }
 
-    public function toString()
+    public function __toString()
     {
 		return "x({$this->xCoordinate}), y({$this->yCoordinate}), pieceColor({$this->pieceColorEnum})";
     }
 }
-

@@ -1,34 +1,26 @@
 <?php
 
-namespace SolarWinds\Chess;
+namespace TechnicalAssessment\Chess;
 
 class MovementTypeEnum
 {
-    private static $_instance = false;
-    private static $_move;
-    private static $_capture;
+    private static bool $_instance = false;
+    private static MovementTypeEnum $_move;
+    private static MovementTypeEnum $_capture;
 
-    private $_id;
+    private int $_id;
 
     private function __construct($_id)
     {
         $this->_id = $_id;
     }
 
-    /** @return: MovementTypeEnum */
-    public static function MOVE()
+    /** @returns MovementTypeEnum */
+    public static function MOVE(): MovementTypeEnum
     {
         self::initialise();
 
         return self::$_move;
-    }
-
-    /** @return: MovementTypeEnum */
-    public static function CAPTURE()
-    {
-        self::initialise();
-
-        return self::$_capture;
     }
 
     private static function initialise()
@@ -41,4 +33,11 @@ class MovementTypeEnum
         self::$_capture = new MovementTypeEnum(2);
     }
 
+    /** @returns MovementTypeEnum */
+    public static function CAPTURE(): MovementTypeEnum
+    {
+        self::initialise();
+
+        return self::$_capture;
+    }
 }

@@ -1,14 +1,15 @@
 <?php
 
-namespace SolarWinds\Chess;
+namespace TechnicalAssessment\Tests\Chess;
 
-use SolarWinds\Chess\ChessBoard;
-use SolarWinds\Chess\MovementTypeEnum;
-use SolarWinds\Chess\Pawn;
-use SolarWinds\Chess\PieceColorEnum;
+use PHPUnit\Framework\TestCase;
+use TechnicalAssessment\Chess\ChessBoard;
+use TechnicalAssessment\Chess\MovementTypeEnum;
+use TechnicalAssessment\Chess\Pawn;
+use TechnicalAssessment\Chess\PieceColorEnum;
 
 
-class PawnTest extends \PHPUnit_Framework_TestCase
+class PawnTest extends TestCase
 {
 
     /** @var  ChessBoard */
@@ -16,7 +17,7 @@ class PawnTest extends \PHPUnit_Framework_TestCase
     /** @var  Pawn */
     private $_testSubject;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->_chessBoard = new ChessBoard();
         $this->_testSubject = new Pawn(PieceColorEnum::WHITE());

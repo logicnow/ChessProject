@@ -2,11 +2,11 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("SolarWinds.MSP.Chess")]
+[assembly: AssemblyTitle("TechnicalAssessment.Chess")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("SolarWinds MSP")]
-[assembly: AssemblyProduct("SolarWinds.MSP.Chess")]
+[assembly: AssemblyCompany("N-ABLE")]
+[assembly: AssemblyProduct("TechnicalAssessment.Chess")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

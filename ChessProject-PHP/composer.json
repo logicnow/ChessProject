@@ -4,14 +4,17 @@
     "license": "proprietary",
     "authors": [
         {
-            "name": "SolarWinds MSP engineering",
-            "email": "info@solarwindsmsp.com"
+            "name": "Technical Assessment for engineering",
+            "email": "no-reply@n-able.com"
         }
     ],
-    "require": {
-        "phpunit/phpunit": "^5.7"
-    },
     "autoload": {
-        "psr-4": { "SolarWinds\\Chess\\": "src/" }
+        "psr-4": { "TechnicalAssessment\\Chess\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "TechnicalAssessment\\Tests\\Chess\\": "tests/" }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.2"
     }
 }

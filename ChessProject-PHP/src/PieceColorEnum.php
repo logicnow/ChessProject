@@ -1,34 +1,26 @@
 <?php
 
-namespace SolarWinds\Chess;
+namespace TechnicalAssessment\Chess;
 
 class PieceColorEnum
 {
-    private static $_instance = false;
-    private static $_white;
-    private static $_black;
+    private static bool $_instance = false;
+    private static PieceColorEnum $_white;
+    private static PieceColorEnum $_black;
 
-    private $_id;
+    private int $_id;
 
     private function __construct($_id)
     {
         $this->_id = $_id;
     }
 
-    /** @return: PieceColorEnum */
-    public static function WHITE()
+    /** @returns PieceColorEnum */
+    public static function WHITE(): PieceColorEnum
     {
         self::initialise();
 
         return self::$_white;
-    }
-
-    /** @return: PieceColorEnum */
-    public static function BLACK()
-    {
-        self::initialise();
-
-        return self::$_black;
     }
 
     private static function initialise()
@@ -41,4 +33,11 @@ class PieceColorEnum
         self::$_black = new PieceColorEnum(2);
     }
 
+    /** @returns PieceColorEnum */
+    public static function BLACK(): PieceColorEnum
+    {
+        self::initialise();
+
+        return self::$_black;
+    }
 }

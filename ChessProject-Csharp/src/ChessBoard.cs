@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SolarWinds.MSP.Chess
+namespace TechnicalAssessment.Chess
 {
     public class ChessBoard
     {

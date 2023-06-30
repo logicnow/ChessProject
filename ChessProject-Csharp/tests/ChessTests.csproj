@@ -6,8 +6,8 @@
     <ProjectGuid>{E40DCBA1-8479-42A1-BFC8-6DC960D50481}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SolarWinds.MSP.Chess</RootNamespace>
-    <AssemblyName>SolarWinds.MSP.ChessTests</AssemblyName>
+    <RootNamespace>TechnicalAssessment.Chess</RootNamespace>
+    <AssemblyName>TechnicalAssessment.ChessTests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

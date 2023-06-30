@@ -8,8 +8,8 @@
     <ProjectGuid>{6DAA3826-A01D-430E-8C75-EFC927C2981C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SolarWinds.MSP.Chess</RootNamespace>
-    <AssemblyName>SolarWinds.MSP.Chess</AssemblyName>
+    <RootNamespace>TechnicalAssessment.Chess</RootNamespace>
+    <AssemblyName>TechnicalAssessment.Chess</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

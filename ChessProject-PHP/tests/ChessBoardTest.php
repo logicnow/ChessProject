@@ -1,18 +1,19 @@
 <?php
 
-namespace SolarWinds\Chess;
+namespace TechnicalAssessment\Tests\Chess;
 
-use SolarWinds\Chess\ChessBoard;
-use SolarWinds\Chess\PieceColorEnum;
-use SolarWinds\Chess\Pawn;
+use PHPUnit\Framework\TestCase;
+use TechnicalAssessment\Chess\ChessBoard;
+use TechnicalAssessment\Chess\PieceColorEnum;
+use TechnicalAssessment\Chess\Pawn;
 
-class ChessBoardTest extends \PHPUnit_Framework_TestCase
+class ChessBoardTest extends TestCase
 {
 
     /** @var  ChessBoard */
     private $_testSubject;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->_testSubject = new ChessBoard();
     }
